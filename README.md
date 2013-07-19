@@ -2,26 +2,28 @@
 Easy module to make exploring api's a breeze, don't worry about `CORS` with clientside external requests, use this -- map the root dir of the API, pass some opts and you're all set.
 
 ### Usage
-```coffee
+```js
 # somewhere in your app.js file,
 # really anything with access to app
 
-local = require "./lib/local"
+var local = require('./lib/local');
+var localize = new local();
 
-localize = new local()
-localize.mount app
+localize.mount(app);
 
 # assuming your app is running on port 1337
 # curl http://localhost:1337/github/users/dhigginbotham
 
 # add another api route
 
-opts =
-  slug: "coderbits"
+var opts = {
+  slug: "coderbits",
   uri: "https://coderbits.com"
+};
 
-coderbits = new local opts
-coderbits.mount app
+var coderbits = new local(opts);
+
+coderbits.mount(app);
 
 # assuming your app is running on port 1337
 # curl http://localhost:1337/coderbits/dhz.json
