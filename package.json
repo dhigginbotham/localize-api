@@ -10,11 +10,13 @@
   "license": "MIT",
   "dependencies": {
     "underscore": "latest",
-    "request": "latest"
+    "request": "latest",
+    "ms": "~0.6.1"
   },
   "devDependencies": {
     "coffee-script": "~1.6.3",
     "mocha": "~1.12.0",
+    "nedb": "~0.8.4",
     "expect.js": "~0.2.0"
   },
   "engines": {
@@ -27,5 +29,5 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:dhigginbotham/localize-api.git"
-  }  
+  }
 }

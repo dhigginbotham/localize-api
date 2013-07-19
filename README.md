@@ -25,7 +25,7 @@ github.mount(app);
 // add another api route
 
 var opts = {
-  slug: "coderbits",
+  path: "coderbits",
   uri: "https://coderbits.com",
   customKey: '__coderbits',
   // middleware: [someMiddlewareFunction, anotherMiddlewareFunction],
