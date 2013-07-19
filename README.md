@@ -6,10 +6,12 @@ Easy module to make exploring api's a breeze, don't worry about `CORS` with clie
 // somewhere in your app.js file,
 // really anything with access to app
 
+// require module
 var localize = require('localize-api');
-var default = new localize();
 
-default.mount(app);
+var github = new localize();
+
+github.mount(app);
 
 // assuming your app is running on port 1337
 // curl http://localhost:1337/github/users/dhigginbotham
