@@ -7,7 +7,6 @@ ms = require "ms"
 
 # lets just patch this through so our Schema can have it without needing
 # to include it else where
-_ds = null
 
 extended = (ds) ->
 
@@ -26,7 +25,7 @@ extended = (ds) ->
 
   ds.loadDatabase (err) -> # dont use this, use interior option `autoload: true` for nedb
     return if err? then throw err
-  
+    
     # run this once, because it's okay.
     self.garbageCollection (err, removed) ->
       return if err? throw err
@@ -40,22 +39,18 @@ extended = (ds) ->
           console.log "NeDB: sent #{removed} items to garbarge collection"
     , int # setting this to ten minute increments should do the trick.
 
-    _ds = self
-
   @
 
 # Schema takes opts, and you can really extend that to as large as you'd like
-extended::Schema = (cache) ->
+extended::Schema = (cache, ds) ->
 
-  stale = "1h"
+  stale = "5s"
   
   @stale = stale
 
-  @path = undefined
-
   @store = undefined
   
-  if opts? then _.extend @, opts
+  if cache? then _.extend @, cache
 
   # check for override of `@stale`
   if @_stale? 
@@ -72,7 +67,7 @@ extended::Schema = (cache) ->
   
   if @stale? or @stale != false
     setTimeout ->
-      _ds.garbageCollection (err, count) ->
+      ds.garbageCollection (err, count) ->
         return if err? then throw err else if count > 0 then console.log "removed #{count} items from cache"
     , self.stale
 

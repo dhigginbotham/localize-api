@@ -51,6 +51,10 @@ Name | Defaults | Info
 `middleware` | `[]` | allows you to add custom middleware to your api, good for authentication/ensureLogin etc
 `customRoute` | `null` | allows you to pass a custom route through as your endpoint, helpful if you want to use the output to template a file
 `customKey` | `__localized` | override the default `req` object addition
+`cache` | `false` | uses `nedb` currently, still finishing `mongodb`
+`ds` | `DataStore` | you'll get one of these from `nedb`
+`stale` | `1m` | uses `ms` module for ez times eg: `1s, 1m, 5m, 1h, 10h, 1d, etc`
+
 
 ### License
 ```md

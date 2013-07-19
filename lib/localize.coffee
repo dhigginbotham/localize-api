@@ -66,6 +66,7 @@ localize = (opts) ->
   self = @
 
   @request = (req, res, next) ->
+
     # lowercase our `req.method` so we don't have to
     # keep up with that.
     method = req.method.toLowerCase()
@@ -80,8 +81,9 @@ localize = (opts) ->
         req[self.customKey] = resp
     
         next()
-
+    
     else
+    
       next JSON.stringify {error: "Restricted/Unsupported method, please try again."}, null
 
   # default router, this should send your json response back to you!!
