@@ -21,9 +21,6 @@
   "engines": {
     "node": ">=0.8.0"
   },
-  "scripts": {
-    "test": "mocha * -R spec -t 3000 --compilers coffee:coffee-script"
-  },
   "bugs": "https://github.com/dhigginbotham/localize-api/issues",
   "repository": {
     "type": "git",
