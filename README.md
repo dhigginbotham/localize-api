@@ -19,9 +19,41 @@ var github = new localize();
 github.mount(app);
 
 // assuming your app is running on port 1337
-// curl http://localhost:1337/github/users/dhigginbotham
+// $ curl http://localhost:1337/github/users/dhigginbotham
+```
 
-// add another api route
+### Full Example w/ Express, and options
+```js
+
+var express = require('express');
+var app = express();
+
+var server = require("http").createServer(app);
+
+var path = require('path');
+var DataStore = require('nedb');
+
+app.set('port', 1337);
+app.use(express.bodyParser());
+app.use(express.methodOverride());
+
+var ds = new DataStore({
+  filename: path.join(__dirname, 'db', 'fileStorage.db');
+});
+
+var customRoute = function (req, res) {
+  res.send(req.__coderbits);
+};
+
+var middleOne = function (req, res, next) {
+  console.log("I am the middleOne middleware :)");
+  next();
+};
+
+var middleTwo = function (req, res, next) {
+  console.log("I am the middleTwo middleware :) :)");
+  next();
+};
 
 var opts = {
   path: 'coderbits',
@@ -30,18 +62,19 @@ var opts = {
   stale: '5m',
   cache: true,
   ds: //nedbObject
-  // middleware: [someMiddlewareFunction, anotherMiddlewareFunction],
-  customRoute: function (req, res) {
-    res.send(req.__coderbits);
-  }
+  // middleware: [middleOne, middleTwo],
+  customRoute: customRoute
 };
 
 var coderbits = new localize(opts);
 
 coderbits.mount(app);
 
-// assuming your app is running on port 1337
-// curl http://localhost:1337/coderbits/dhz.json
+server.listen(app.get('port'), function () {
+  console.log('listening on port ' + app.get('port'));
+});
+
+// GET http://localhost:1337/coderbits/dhz.json
 ```
 
 ### Options
