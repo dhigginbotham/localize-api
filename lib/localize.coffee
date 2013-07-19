@@ -2,8 +2,7 @@
 
 # include modules
 _ = require "underscore"
-request = require "request"
-extended = require "./extended"
+request = require "./request"
 
 # localize
 localize = (opts) ->
@@ -50,11 +49,11 @@ localize = (opts) ->
   # define our db as null, we'll obviously need one
   # this should be compatible with `nedb` and `mongodb`
   # out of the box `<3 nedb!!!`
-  @store = null
+  @ds = null
 
   # define default cache length, defaults to 10 hours --
   # this uses the [`ms`](https://npmjs.org/package/ms) module, so you have a small set of stale loving
-  @stale = "10h"
+  @stale = "1m"
 
   # define our default cache type, accepts `nedb` and `mongodb`
   @cacheType = "nedb"
@@ -66,17 +65,7 @@ localize = (opts) ->
   # maintain our scope... es mui importante
   self = @
 
-  if (@cache == true) and @store?
-    self.store = new extended self.store
-
   @request = (req, res, next) ->
-
-    # sanitize our url so we can pass anything through
-    clean = req.url.replace "/#{self.path}/", ""
-
-    # define our route, we want this...
-    url = "#{self.uri}/#{clean}"
-
     # lowercase our `req.method` so we don't have to
     # keep up with that.
     method = req.method.toLowerCase()
@@ -84,21 +73,14 @@ localize = (opts) ->
     # validate supported form methods
     if self.methods.indexOf(method) > -1
 
-      # build `request` opts object, should probably make
-      # a bit of this accessible on the front-end
-      opts = 
-        uri: url
-        method: req.method
-        headers: "User-Agent": "#{self.path}-surfing"
-
       # do a request with our url map, this
       # should work for our uses
-      request opts, (err, resp, body) ->
-        return if err? then next err, null
-
+      new request req, self, (err, resp) ->
         # set `req[self.customKey]` to our body
-        req[self.customKey] = body
+        req[self.customKey] = resp
+    
         next()
+
     else
       next JSON.stringify {error: "Restricted/Unsupported method, please try again."}, null
 
@@ -118,8 +100,8 @@ localize::mount = (app) ->
   if self.middleware.length > 0
 
     # loop through our middleware and add it accordingly
-    for m in self.middleware
-      app.all "/#{self.path}*", m
+    for middlewares in self.middleware
+      app.all "/#{self.path}*", middlewares
 
   # check for a custom route, otherwise have fun!
   if self.customRoute == null

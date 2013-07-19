@@ -24,21 +24,21 @@ extended = (ds) ->
 
   int = ms(_interval)
 
-  # ds.loadDatabase (err) -> # dont use this, use interior option `autoload: true` for nedb
-  # return if err? then throw err
+  ds.loadDatabase (err) -> # dont use this, use interior option `autoload: true` for nedb
+    return if err? then throw err
   
-  # run this once, because it's okay.
-  self.garbageCollection (err, removed) ->
-    return if err? throw err
-    if removed > 0
-      console.log "NeDB: sent #{removed} items to garbarge collection"
-
-  setInterval ->
+    # run this once, because it's okay.
     self.garbageCollection (err, removed) ->
       return if err? throw err
       if removed > 0
         console.log "NeDB: sent #{removed} items to garbarge collection"
-  , int # setting this to ten minute increments should do the trick.
+
+    setInterval ->
+      self.garbageCollection (err, removed) ->
+        return if err? throw err
+        if removed > 0
+          console.log "NeDB: sent #{removed} items to garbarge collection"
+    , int # setting this to ten minute increments should do the trick.
 
   ds = @
 
