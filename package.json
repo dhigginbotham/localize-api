@@ -1,0 +1,26 @@
+{
+  "name": "localize-api",
+  "version": "0.0.1",
+  "description": "helpful resource for getting external api's and making them local",
+  "main": "lib/index.coffee",
+  "author": {
+    "name": "David Higginbotham",
+    "email": "davehigginbotham@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "underscore": "latest",
+    "request": "latest"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.6.3",
+    "mocha": "~1.12.0",
+    "expect.js": "~0.2.0"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "scripts": {
+    "test": "mocha * -R spec -t 3000 --compilers coffee:coffee-script"
+  }
+}
