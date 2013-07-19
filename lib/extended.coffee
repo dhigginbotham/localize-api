@@ -51,6 +51,8 @@ extended::Schema = (cache) ->
   
   @stale = stale
 
+  @path = undefined
+
   @store = undefined
   
   if opts? then _.extend @, opts

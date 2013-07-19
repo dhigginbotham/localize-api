@@ -67,7 +67,7 @@ localize = (opts) ->
   self = @
 
   if (@cache == true) and @store?
-    self.db = new extended self.db
+    self.store = new extended self.store
 
   @request = (req, res, next) ->
 
@@ -100,7 +100,7 @@ localize = (opts) ->
         req[self.customKey] = body
         next()
     else
-      next JSON.stringify {error: "Unsupported method tried, please try again."}, null
+      next JSON.stringify {error: "Restricted/Unsupported method, please try again."}, null
 
   # default router, this should send your json response back to you!!
   @router = (req, res) ->
