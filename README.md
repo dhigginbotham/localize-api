@@ -1,6 +1,12 @@
 ## localize-api
 Easy module to make exploring api's a breeze, don't worry about `CORS` with clientside external requests, use this -- map the root dir of the API, pass some opts and you're all set.
 
+### Features
+- express api mount/router for external resources
+- 100% coffeescript, hate it or love it
+- extendable w/ `nedb` & `mongodb` __not finished__
+- negates the whole clientside `cors` issue for some people by using request, and localizes to a RESTful route
+
 ### Usage
 ```js
 // somewhere in your app.js file,
