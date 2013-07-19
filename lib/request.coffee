@@ -45,7 +45,8 @@ requestsHandler = (req, opts, fn) ->
           if body? 
             
             cache = JSON.parse body
-            cache.stale = "1m"
+            cache.stale = self.stale
+            cache.path = req.url
 
             insert = new self.ds.Schema cache, self.ds
 
