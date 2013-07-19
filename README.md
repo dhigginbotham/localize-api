@@ -1,10 +1,9 @@
 ## localize-api
-Easy module to make exploring api's a breeze, don't worry about `CORS` with clientside external requests, use this -- map the root dir of the API, pass some opts and you're all set.
+This module allows you to localize external API's along with a simple cache layer/garbarge collection utilizing `nedb`, I plan to build in `mongodb` as well. 
 
 ### Features
 - express api mount/router for external resources
 - 100% coffeescript, hate it or love it
-- extendable w/ `nedb` & `mongodb` __not finished__
 - negates the whole clientside `cors` issue for some people by using request, and localizes to a RESTful route
 
 ### Usage
@@ -25,9 +24,12 @@ github.mount(app);
 // add another api route
 
 var opts = {
-  path: "coderbits",
-  uri: "https://coderbits.com",
+  path: 'coderbits',
+  uri: 'https://coderbits.com',
   customKey: '__coderbits',
+  stale: '5m',
+  cache: true,
+  ds: //nedbObject
   // middleware: [someMiddlewareFunction, anotherMiddlewareFunction],
   customRoute: function (req, res) {
     res.send(req.__coderbits);
