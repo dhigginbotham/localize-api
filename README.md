@@ -1,7 +1,10 @@
 ## localize-api
 I needed a way to have more control over external API's as well as keep the REST API functionality. This module allows you to localize external API's along with a simple cache layer/garbarge collection utilizing [`nedb`](https://github.com/louischatriot/nedb), I plan to build in [`mongodb`](https://github.com/mongodb/node-mongodb-native) as well. 
 
-![](https://nodei.co/npm/localize-api.png?downloads=true&stars=true) ![](https://badge.fury.io/js/localize-api.png)
+![](https://nodei.co/npm/localize-api.png?downloads=true&stars=true) 
+
+![](https://badge.fury.io/js/localize-api.png)
+
 ### Features
 - express api mount/router for external resources
 - 100% coffeescript, hate it or love it
