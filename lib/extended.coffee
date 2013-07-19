@@ -7,7 +7,7 @@ ms = require "ms"
 
 # lets just patch this through so our Schema can have it without needing
 # to include it else where
-ds = null
+_ds = null
 
 extended = (ds) ->
 
@@ -40,7 +40,7 @@ extended = (ds) ->
           console.log "NeDB: sent #{removed} items to garbarge collection"
     , int # setting this to ten minute increments should do the trick.
 
-  ds = @
+    _ds = self
 
   @
 
@@ -72,7 +72,7 @@ extended::Schema = (cache) ->
   
   if @stale? or @stale != false
     setTimeout ->
-      ds.garbageCollection (err, count) ->
+      _ds.garbageCollection (err, count) ->
         return if err? then throw err else if count > 0 then console.log "removed #{count} items from cache"
     , self.stale
 

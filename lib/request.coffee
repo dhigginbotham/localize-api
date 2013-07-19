@@ -7,8 +7,6 @@ requestsHandler = (req, opts, fn) ->
   # immediately extend our `this` with `opts`
   _.extend @, opts
 
-  console.log @
-
   @output = null
 
   # maintain scope, it's important
@@ -49,6 +47,7 @@ requestsHandler = (req, opts, fn) ->
             cache =
               path: req.url
               cache: JSON.parse body
+              stale: self.stale
 
             insert = new self.ds.Schema cache, self.ds
 
