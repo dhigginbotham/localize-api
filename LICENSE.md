@@ -1,27 +1,3 @@
-## localize-api
-Easy module to make exploring api's a breeze, don't worry about `CORS` with clientside external requests, use this -- map the root dir of the API, pass some opts and you're all set.
-
-### Usage
-```md
-# somewhere in your app.js file,
-# really anything with access to app
-
-local = require "./lib/local"
-
-localize = new local()
-localize.mount app
-```
-
-### Options
-Name | Defaults | Info
---- | --- | ---
-`slug` | `github` | path ie `://localhost/github`
-`version` | 'false' | tbd
-`uri` | `https://api.github.com` | api path
-`methods` | `['post', 'put', 'delete', 'get']` | accepted methods to api
-
-### License
-```md
 The MIT License (MIT)
 
 Copyright (c) 2013 David Higginbotham 
@@ -43,4 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-```
