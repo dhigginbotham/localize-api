@@ -3,18 +3,18 @@ Easy module to make exploring api's a breeze, don't worry about `CORS` with clie
 
 ### Usage
 ```js
-# somewhere in your app.js file,
-# really anything with access to app
+// somewhere in your app.js file,
+// really anything with access to app
 
 var local = require('./lib/local');
 var localize = new local();
 
 localize.mount(app);
 
-# assuming your app is running on port 1337
-# curl http://localhost:1337/github/users/dhigginbotham
+// assuming your app is running on port 1337
+// curl http://localhost:1337/github/users/dhigginbotham
 
-# add another api route
+// add another api route
 
 var opts = {
   slug: "coderbits",
@@ -25,8 +25,8 @@ var coderbits = new local(opts);
 
 coderbits.mount(app);
 
-# assuming your app is running on port 1337
-# curl http://localhost:1337/coderbits/dhz.json
+// assuming your app is running on port 1337
+// curl http://localhost:1337/coderbits/dhz.json
 ```
 
 ### Options
