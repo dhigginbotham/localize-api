@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Localize-api by dhigginbotham</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Localize-api</h1>
+        <p>&quot;localize&quot; external API's and cache them for awhile</p>
+
+        <p class="view"><a href="https://github.com/dhigginbotham/localize-api">View the Project on GitHub <small>dhigginbotham/localize-api</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/dhigginbotham/localize-api/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/dhigginbotham/localize-api/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/dhigginbotham/localize-api">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>
+<a name="localize-api" class="anchor" href="#localize-api"><span class="octicon octicon-link"></span></a>localize-api</h2>
+
+<p>I needed a way to have more control over external API's as well as keep the REST API functionality. This module allows you to localize external API's along with a simple cache layer/garbarge collection utilizing <a href="https://github.com/louischatriot/nedb"><code>nedb</code></a>, I plan to build in <a href="https://github.com/mongodb/node-mongodb-native"><code>mongodb</code></a> as well. </p>
+
+<p><img src="https://nodei.co/npm/localize-api.png?downloads=true&amp;stars=true" alt=""><img src="https://badge.fury.io/js/localize-api.png" alt=""></p>
+
+<h3>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h3>
+
+<ul>
+<li>express api mount/router for external resources</li>
+<li>100% coffeescript, hate it or love it</li>
+<li>negates the whole clientside <code>cors</code> issue for some people by using request, and localizes to a RESTful route</li>
+</ul><h3>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<div class="highlight"><pre><span class="n">npm</span> <span class="n">install</span> <span class="n">localize</span><span class="p">-</span><span class="n">api</span> <span class="p">--</span><span class="n">save</span>
+</pre></div>
+
+<p>You'll also need CoffeeScript, it's easy though: <code>npm install coffeescript -g</code></p>
+
+<h2>
+<a name="full-example-w-express-and-options" class="anchor" href="#full-example-w-express-and-options"><span class="octicon octicon-link"></span></a>Full Example w/ Express, and options</h2>
+
+<p>This example depends on having <a href="https://github.com/visionmedia/express"><code>express.js</code></a> and <a href="https://github.com/louischatriot/nedb"><code>nedb</code></a> available:</p>
+
+<p><code>npm install express nedb --save</code></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"http"</span><span class="p">).</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'path'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">DataStore</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'nedb'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">localize</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'localize-api'</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'port'</span><span class="p">,</span> <span class="mi">1337</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">bodyParser</span><span class="p">());</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">methodOverride</span><span class="p">());</span>
+
+<span class="c1">// simple example</span>
+<span class="kd">var</span> <span class="nx">github</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">localize</span><span class="p">();</span>
+
+<span class="nx">github</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+
+<span class="c1">// full example</span>
+<span class="kd">var</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataStore</span><span class="p">({</span>
+  <span class="nx">filename</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">'db'</span><span class="p">,</span> <span class="s1">'fileStorage.db'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">customRoute</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">__coderbits</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">middleOne</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"I am the middleOne middleware :)"</span><span class="p">);</span>
+  <span class="nx">next</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">middleTwo</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"I am the middleTwo middleware :) :)"</span><span class="p">);</span>
+  <span class="nx">next</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">opts</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">path</span><span class="o">:</span> <span class="s1">'coderbits'</span><span class="p">,</span>
+  <span class="nx">uri</span><span class="o">:</span> <span class="s1">'https://coderbits.com'</span><span class="p">,</span>
+  <span class="nx">customKey</span><span class="o">:</span> <span class="s1">'__coderbits'</span><span class="p">,</span>
+  <span class="nx">stale</span><span class="o">:</span> <span class="s1">'5m'</span><span class="p">,</span>
+  <span class="nx">cache</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nx">ds</span><span class="o">:</span> <span class="nx">ds</span><span class="p">,</span>
+  <span class="nx">middleware</span><span class="o">:</span> <span class="p">[</span><span class="nx">middleOne</span><span class="p">,</span> <span class="nx">middleTwo</span><span class="p">],</span>
+  <span class="nx">customRoute</span><span class="o">:</span> <span class="nx">customRoute</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">coderbits</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">localize</span><span class="p">(</span><span class="nx">opts</span><span class="p">);</span>
+
+<span class="nx">coderbits</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'port'</span><span class="p">),</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'listening on port '</span> <span class="o">+</span> <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'port'</span><span class="p">));</span>
+<span class="p">});</span>
+
+<span class="c1">// GET http://localhost:1337/coderbits/dhz.json</span>
+</pre></div>
+
+<h3>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h3>
+
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Defaults</th>
+<th>Info</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code>accepted</code></td>
+<td><code>['post', 'put', 'delete', 'get']</code></td>
+<td>accepted methods to run external requests against, expects an array</td>
+</tr>
+<tr>
+<td><code>cache</code></td>
+<td><code>false</code></td>
+<td>uses <a href="https://github.com/louischatriot/nedb"><code>nedb</code></a> currently, still finishing <code>mongodb</code>
+</td>
+</tr>
+<tr>
+<td><code>customKey</code></td>
+<td><code>__localized</code></td>
+<td>override the default <code>req</code> object addition</td>
+</tr>
+<tr>
+<td><code>customRoute</code></td>
+<td><code>null</code></td>
+<td>allows you to pass a custom route through as your endpoint, helpful if you want to use the output to template a file</td>
+</tr>
+<tr>
+<td><code>ds</code></td>
+<td><code>DataStore</code></td>
+<td>you'll get one of these from <a href="https://github.com/louischatriot/nedb"><code>nedb</code></a>
+</td>
+</tr>
+<tr>
+<td><code>middleware</code></td>
+<td><code>[]</code></td>
+<td>allows you to add custom middleware to your api, good for authentication/ensureLogin etc</td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td><code>github</code></td>
+<td>defaults to <code>github</code> which is the default api to get this going quickly</td>
+</tr>
+<tr>
+<td><code>stale</code></td>
+<td><code>1m</code></td>
+<td>uses <code>ms</code> module for ez times eg: <code>1s, 1m, 5m, 1h, 10h, 1d, etc</code>
+</td>
+</tr>
+<tr>
+<td><code>uri</code></td>
+<td><code>https://api.github.com</code></td>
+<td>api path to localize</td>
+</tr>
+</tbody>
+</table><h3>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h3>
+
+<div class="highlight"><pre><span class="n">The</span> <span class="n">MIT</span> <span class="n">License</span> <span class="p">(</span><span class="n">MIT</span><span class="p">)</span>
+
+<span class="n">Copyright</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="mi">2013</span> <span class="n">David</span> <span class="n">Higginbotham</span> 
+
+<span class="n">Permission</span> <span class="k">is</span> <span class="n">hereby</span> <span class="n">granted</span><span class="p">,</span> <span class="n">free</span> <span class="n">of</span> <span class="n">charge</span><span class="p">,</span> <span class="n">to</span> <span class="n">any</span> <span class="n">person</span> <span class="n">obtaining</span> <span class="n">a</span> <span class="n">copy</span>
+<span class="n">of</span> <span class="k">this</span> <span class="n">software</span> <span class="n">and</span> <span class="n">associated</span> <span class="n">documentation</span> <span class="n">files</span> <span class="p">(</span><span class="n">the</span> <span class="s">"Software"</span><span class="p">),</span> <span class="n">to</span> <span class="n">deal</span>
+<span class="k">in</span> <span class="n">the</span> <span class="n">Software</span> <span class="n">without</span> <span class="n">restriction</span><span class="p">,</span> <span class="n">including</span> <span class="n">without</span> <span class="n">limitation</span> <span class="n">the</span> <span class="n">rights</span>
+<span class="n">to</span> <span class="n">use</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">modify</span><span class="p">,</span> <span class="n">merge</span><span class="p">,</span> <span class="n">publish</span><span class="p">,</span> <span class="n">distribute</span><span class="p">,</span> <span class="n">sublicense</span><span class="p">,</span> <span class="n">and</span><span class="p">/</span><span class="n">or</span> <span class="n">sell</span>
+<span class="n">copies</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Software</span><span class="p">,</span> <span class="n">and</span> <span class="n">to</span> <span class="n">permit</span> <span class="n">persons</span> <span class="n">to</span> <span class="n">whom</span> <span class="n">the</span> <span class="n">Software</span> <span class="k">is</span>
+<span class="n">furnished</span> <span class="n">to</span> <span class="k">do</span> <span class="n">so</span><span class="p">,</span> <span class="n">subject</span> <span class="n">to</span> <span class="n">the</span> <span class="n">following</span> <span class="n">conditions</span><span class="p">:</span>
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">copyright</span> <span class="n">notice</span> <span class="n">and</span> <span class="k">this</span> <span class="n">permission</span> <span class="n">notice</span> <span class="n">shall</span> <span class="n">be</span> <span class="n">included</span> <span class="k">in</span>
+<span class="n">all</span> <span class="n">copies</span> <span class="n">or</span> <span class="n">substantial</span> <span class="n">portions</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Software</span><span class="p">.</span>
+
+<span class="n">THE</span> <span class="n">SOFTWARE</span> <span class="n">IS</span> <span class="n">PROVIDED</span> <span class="s">"AS IS"</span><span class="p">,</span> <span class="n">WITHOUT</span> <span class="n">WARRANTY</span> <span class="n">OF</span> <span class="n">ANY</span> <span class="n">KIND</span><span class="p">,</span> <span class="n">EXPRESS</span> <span class="n">OR</span>
+<span class="n">IMPLIED</span><span class="p">,</span> <span class="n">INCLUDING</span> <span class="n">BUT</span> <span class="n">NOT</span> <span class="n">LIMITED</span> <span class="n">TO</span> <span class="n">THE</span> <span class="n">WARRANTIES</span> <span class="n">OF</span> <span class="n">MERCHANTABILITY</span><span class="p">,</span>
+<span class="n">FITNESS</span> <span class="n">FOR</span> <span class="n">A</span> <span class="n">PARTICULAR</span> <span class="n">PURPOSE</span> <span class="n">AND</span> <span class="n">NONINFRINGEMENT</span><span class="p">.</span> <span class="n">IN</span> <span class="n">NO</span> <span class="n">EVENT</span> <span class="n">SHALL</span> <span class="n">THE</span>
+<span class="n">AUTHORS</span> <span class="n">OR</span> <span class="n">COPYRIGHT</span> <span class="n">HOLDERS</span> <span class="n">BE</span> <span class="n">LIABLE</span> <span class="n">FOR</span> <span class="n">ANY</span> <span class="n">CLAIM</span><span class="p">,</span> <span class="n">DAMAGES</span> <span class="n">OR</span> <span class="n">OTHER</span>
+<span class="n">LIABILITY</span><span class="p">,</span> <span class="n">WHETHER</span> <span class="n">IN</span> <span class="n">AN</span> <span class="n">ACTION</span> <span class="n">OF</span> <span class="n">CONTRACT</span><span class="p">,</span> <span class="n">TORT</span> <span class="n">OR</span> <span class="n">OTHERWISE</span><span class="p">,</span> <span class="n">ARISING</span> <span class="n">FROM</span><span class="p">,</span>
+<span class="n">OUT</span> <span class="n">OF</span> <span class="n">OR</span> <span class="n">IN</span> <span class="n">CONNECTION</span> <span class="n">WITH</span> <span class="n">THE</span> <span class="n">SOFTWARE</span> <span class="n">OR</span> <span class="n">THE</span> <span class="n">USE</span> <span class="n">OR</span> <span class="n">OTHER</span> <span class="n">DEALINGS</span> <span class="n">IN</span>
+<span class="n">THE</span> <span class="n">SOFTWARE</span><span class="p">.</span>
+</pre></div>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/dhigginbotham">dhigginbotham</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
