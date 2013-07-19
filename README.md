@@ -2,7 +2,7 @@
 Easy module to make exploring api's a breeze, don't worry about `CORS` with clientside external requests, use this -- map the root dir of the API, pass some opts and you're all set.
 
 ### Usage
-```md
+```coffee
 # somewhere in your app.js file,
 # really anything with access to app
 
