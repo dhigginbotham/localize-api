@@ -3,7 +3,7 @@
 # include modules
 _ = require "underscore"
 request = require "request"
-extended = require "extended"
+extended = require "./extended"
 
 # localize
 localize = (opts) ->
