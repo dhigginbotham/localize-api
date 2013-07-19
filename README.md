@@ -10,6 +10,21 @@ local = require "./lib/local"
 
 localize = new local()
 localize.mount app
+
+# assuming your app is running on port 1337
+# curl http://localhost:1337/github/users/dhigginbotham
+
+# add another api route
+
+opts =
+  slug: "coderbits"
+  uri: "https://coderbits.com"
+
+coderbits = new local opts
+coderbits.mount app
+
+# assuming your app is running on port 1337
+# curl http://localhost:1337/coderbits/dhz.json
 ```
 
 ### Options
