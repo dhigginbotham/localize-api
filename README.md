@@ -1,28 +1,19 @@
 ## localize-api
-This module allows you to localize external API's along with a simple cache layer/garbarge collection utilizing `nedb`, I plan to build in `mongodb` as well. 
+I needed a way to have more control over external API's as well as keep the REST API functionality. This module allows you to localize external API's along with a simple cache layer/garbarge collection utilizing `nedb`, I plan to build in `mongodb` as well. 
 
 ### Features
 - express api mount/router for external resources
 - 100% coffeescript, hate it or love it
 - negates the whole clientside `cors` issue for some people by using request, and localizes to a RESTful route
 
-### Usage
-```js
-// somewhere in your app.js file,
-// really anything with access to app
+### Installation
+`npm install git+https://github.com/dhigginbotham/localize-api --save`
 
-// require module
-var localize = require('localize-api');
+## Full Example w/ Express, and options
+This example depends on having `express.js` and `nedb` available:
 
-var github = new localize();
+  `npm install express nedb --save`
 
-github.mount(app);
-
-// assuming your app is running on port 1337
-// $ curl http://localhost:1337/github/users/dhigginbotham
-```
-
-### Full Example w/ Express, and options
 ```js
 
 var express = require('express');
@@ -38,6 +29,12 @@ app.set('port', 1337);
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 
+// simple example
+var github = new localize();
+
+github.mount(app);
+
+// full example
 var ds = new DataStore({
   filename: path.join(__dirname, 'db', 'fileStorage.db');
 });
@@ -81,15 +78,15 @@ server.listen(app.get('port'), function () {
 ### Options
 Name | Defaults | Info
 --- | --- | ---
-`slug` | `github` | defaults to `github` which is the default api to get this going quickly
-`uri` | `https://api.github.com` | api path to localize
 `accepted` | `['post', 'put', 'delete', 'get']` | accepted methods to run external requests against, expects an array
-`middleware` | `[]` | allows you to add custom middleware to your api, good for authentication/ensureLogin etc
-`customRoute` | `null` | allows you to pass a custom route through as your endpoint, helpful if you want to use the output to template a file
-`customKey` | `__localized` | override the default `req` object addition
 `cache` | `false` | uses `nedb` currently, still finishing `mongodb`
+`customKey` | `__localized` | override the default `req` object addition
+`customRoute` | `null` | allows you to pass a custom route through as your endpoint, helpful if you want to use the output to template a file
 `ds` | `DataStore` | you'll get one of these from `nedb`
+`middleware` | `[]` | allows you to add custom middleware to your api, good for authentication/ensureLogin etc
+`path` | `github` | defaults to `github` which is the default api to get this going quickly
 `stale` | `1m` | uses `ms` module for ez times eg: `1s, 1m, 5m, 1h, 10h, 1d, etc`
+`uri` | `https://api.github.com` | api path to localize
 
 
 ### License
