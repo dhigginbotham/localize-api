@@ -26,7 +26,12 @@ github.mount(app);
 
 var opts = {
   slug: "coderbits",
-  uri: "https://coderbits.com"
+  uri: "https://coderbits.com",
+  customKey: '__coderbits',
+  // middleware: [someMiddlewareFunction, anotherMiddlewareFunction],
+  customRoute: function (req, res) {
+    res.send(req.__coderbits);
+  }
 };
 
 var coderbits = new localize(opts);
@@ -40,10 +45,12 @@ coderbits.mount(app);
 ### Options
 Name | Defaults | Info
 --- | --- | ---
-`slug` | `github` | path ie `://localhost/github`
-`version` | 'false' | tbd
-`uri` | `https://api.github.com` | api path
-`methods` | `['post', 'put', 'delete', 'get']` | accepted methods to api
+`slug` | `github` | defaults to `github` which is the default api to get this going quickly
+`uri` | `https://api.github.com` | api path to localize
+`accepted` | `['post', 'put', 'delete', 'get']` | accepted methods to run external requests against, expects an array
+`middleware` | `[]` | allows you to add custom middleware to your api, good for authentication/ensureLogin etc
+`customRoute` | `null` | allows you to pass a custom route through as your endpoint, helpful if you want to use the output to template a file
+`customKey` | `__localized` | override the default `req` object addition
 
 ### License
 ```md

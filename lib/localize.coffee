@@ -29,6 +29,18 @@ localizer = (opts) ->
   # to certain things, clearly.
   @methods = ['post', 'put', 'delete', 'get']
 
+  # add custom middleware to your route,
+  # accepts an array of middleware
+  @middleware = []
+
+  # add a custom route handler, item will have
+  # access to `req` & `res`
+  @customRoute = null
+
+  # define a custom `req` object resource
+  # name to store our request body to
+  @customKey = "__localized"
+
   # only extend this class if options is
   # included.
   if opts? then _.extend @, opts
@@ -36,7 +48,7 @@ localizer = (opts) ->
   # maintain our scope... es mui importante
   self = @
 
-  @middleware = (req, res, next) ->
+  @request = (req, res, next) ->
 
     # sanitize our url so we can pass anything through
     clean = req.url.replace("/#{self.slug}/", "")
@@ -58,14 +70,14 @@ localizer = (opts) ->
       request opts, (err, resp, body) ->
         return if err? then next err, null
 
-        # set `req.__localized` to our body
-        req.__localized = body
+        # set `req[self.customKey]` to our body
+        req[self.customKey] = body
         next()
     else
-      next JSON.stringify {error: "unsupported method tried, please try again."}, null
+      next JSON.stringify {error: "Unsupported method tried, please try again."}, null
 
   @router = (req, res) ->
-    res.send req.__localized
+    res.send req[self.customKey]
 
   @
 
@@ -74,7 +86,18 @@ localizer::mount = (app) ->
   # request, and fire only once.
   self = @
 
-  app.all "/#{self.slug}*", self.middleware, self.router  
+  # verify we have custom middleware, otherwise skip this loop 
+  # all together
+  if self.middleware.length > 0
+
+    # loop through our middleware and add it accordingly
+    for m in self.middleware
+      app.all "/#{self.slug}*", m
+
+  # check for a custom route, otherwise have fun!
+  if self.customRoute == null
+    app.all "/#{self.slug}*", self.request, self.router
+  else app.all "/#{self.slug}*", self.request, self.customRoute
 
   @
 
