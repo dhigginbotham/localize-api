@@ -9,6 +9,12 @@ I needed a way to have more control over external API's as well as keep the REST
 - express api mount/router for external resources
 - 100% coffeescript, hate it or love it
 - negates the whole clientside `cors` issue for some people by using request, and localizes to a RESTful route
+- If you're using cache it's going to help avoid making a lot of chatty calls to an API, especially if you're doing a lot of paging eg:
+  
+  ```
+  GET /github/users/dhigginbotham/following?per_page=300 200 605ms
+  GET /github/users/dhigginbotham/following?per_page=300 304 24ms
+  ```
 
 ### Installation
 ```md
