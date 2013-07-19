@@ -61,8 +61,8 @@ var opts = {
   customKey: '__coderbits',
   stale: '5m',
   cache: true,
-  ds: //nedbObject
-  // middleware: [middleOne, middleTwo],
+  ds: ds,
+  middleware: [middleOne, middleTwo],
   customRoute: customRoute
 };
 
