@@ -7,7 +7,11 @@ I needed a way to have more control over external API's as well as keep the REST
 - negates the whole clientside `cors` issue for some people by using request, and localizes to a RESTful route
 
 ### Installation
-`npm install git+https://github.com/dhigginbotham/localize-api --save`
+```md
+npm install git+https://github.com/dhigginbotham/localize-api --save
+```
+
+You'll also need CoffeeScript, it's easy though: `npm install coffeescript -g`
 
 ## Full Example w/ Express, and options
 This example depends on having [`express.js`](https://github.com/visionmedia/express) and [`nedb`](https://github.com/louischatriot/nedb) available:
@@ -15,7 +19,6 @@ This example depends on having [`express.js`](https://github.com/visionmedia/exp
   `npm install express nedb --save`
 
 ```js
-
 var express = require('express');
 var app = express();
 
