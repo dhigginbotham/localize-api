@@ -1,5 +1,5 @@
 ## localize-api
-I needed a way to have more control over external API's as well as keep the REST API functionality. This module allows you to localize external API's along with a simple cache layer/garbarge collection utilizing `nedb`, I plan to build in `mongodb` as well. 
+I needed a way to have more control over external API's as well as keep the REST API functionality. This module allows you to localize external API's along with a simple cache layer/garbarge collection utilizing [`nedb`](https://github.com/louischatriot/nedb), I plan to build in [`mongodb`](https://github.com/mongodb/node-mongodb-native) as well. 
 
 ### Features
 - express api mount/router for external resources
@@ -10,7 +10,7 @@ I needed a way to have more control over external API's as well as keep the REST
 `npm install git+https://github.com/dhigginbotham/localize-api --save`
 
 ## Full Example w/ Express, and options
-This example depends on having `express.js` and `nedb` available:
+This example depends on having [`express.js`](https://github.com/visionmedia/express) and [`nedb`](https://github.com/louischatriot/nedb) available:
 
   `npm install express nedb --save`
 
@@ -79,10 +79,10 @@ server.listen(app.get('port'), function () {
 Name | Defaults | Info
 --- | --- | ---
 `accepted` | `['post', 'put', 'delete', 'get']` | accepted methods to run external requests against, expects an array
-`cache` | `false` | uses `nedb` currently, still finishing `mongodb`
+`cache` | `false` | uses [`nedb`](https://github.com/louischatriot/nedb) currently, still finishing `mongodb`
 `customKey` | `__localized` | override the default `req` object addition
 `customRoute` | `null` | allows you to pass a custom route through as your endpoint, helpful if you want to use the output to template a file
-`ds` | `DataStore` | you'll get one of these from `nedb`
+`ds` | `DataStore` | you'll get one of these from [`nedb`](https://github.com/louischatriot/nedb)
 `middleware` | `[]` | allows you to add custom middleware to your api, good for authentication/ensureLogin etc
 `path` | `github` | defaults to `github` which is the default api to get this going quickly
 `stale` | `1m` | uses `ms` module for ez times eg: `1s, 1m, 5m, 1h, 10h, 1d, etc`
