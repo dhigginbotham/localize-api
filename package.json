@@ -1,8 +1,8 @@
 {
   "name": "localize-api",
-  "version": "0.0.2",
+  "version": "0.0.3-1",
   "description": "helpful resource for getting external api's and making them local",
-  "main": "lib/index.coffee",
+  "main": "lib/index.js",
   "author": {
     "name": "David Higginbotham",
     "email": "davehigginbotham@gmail.com"
