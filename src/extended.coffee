@@ -19,7 +19,7 @@ extended = (ds) ->
 
   self = @
 
-  _interval = "10m"
+  _interval = "25m"
 
   int = ms(_interval)
 
