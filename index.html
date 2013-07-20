@@ -3,11 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Localize-api by dhigginbotham</title>
+    <title>LOCALIZE by dhigginbotham</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -15,12 +17,9 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>Localize-api</h1>
+        <h1>LOCALIZE</h1>
         <p>&quot;localize&quot; external API's and cache them for awhile</p>
-
         <p class="view"><a href="https://github.com/dhigginbotham/localize-api">View the Project on GitHub <small>dhigginbotham/localize-api</small></a></p>
-
-
         <ul>
           <li><a href="https://github.com/dhigginbotham/localize-api/zipball/master">Download <strong>ZIP File</strong></a></li>
           <li><a href="https://github.com/dhigginbotham/localize-api/tarball/master">Download <strong>TAR Ball</strong></a></li>
@@ -33,7 +32,9 @@
 
 <p>I needed a way to have more control over external API's as well as keep the REST API functionality. This module allows you to localize external API's along with a simple cache layer/garbarge collection utilizing <a href="https://github.com/louischatriot/nedb"><code>nedb</code></a>, I plan to build in <a href="https://github.com/mongodb/node-mongodb-native"><code>mongodb</code></a> as well. </p>
 
-<p><img src="https://nodei.co/npm/localize-api.png?downloads=true&amp;stars=true" alt=""><img src="https://badge.fury.io/js/localize-api.png" alt=""></p>
+<p><img src="https://nodei.co/npm/localize-api.png?downloads=true&amp;stars=true" alt=""></p>
+
+<p><img src="https://badge.fury.io/js/localize-api.png" alt=""></p>
 
 <h3>
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h3>
@@ -42,6 +43,13 @@
 <li>express api mount/router for external resources</li>
 <li>100% coffeescript, hate it or love it</li>
 <li>negates the whole clientside <code>cors</code> issue for some people by using request, and localizes to a RESTful route</li>
+<li>
+<p>If you're using cache it's going to help avoid making a lot of chatty calls to an API, especially if you're doing a lot of paging eg:</p>
+
+<pre><code>GET /github/users/dhigginbotham/following?per_page=300 200 605ms
+GET /github/users/dhigginbotham/following?per_page=300 304 24ms
+</code></pre>
+</li>
 </ul><h3>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
 
@@ -201,12 +209,12 @@
 <span class="n">THE</span> <span class="n">SOFTWARE</span><span class="p">.</span>
 </pre></div>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/dhigginbotham">dhigginbotham</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/dhigginbotham">dhigginbotham</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
 </html>
