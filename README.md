@@ -5,6 +5,8 @@ I needed a way to have more control over external API's as well as keep the REST
 
 ![](https://badge.fury.io/js/localize-api.png)
 
+![](https://drone.io/github.com/dhigginbotham/localize-api/status.png)
+
 ### Features
 - express api mount/router for external resources
 - 100% coffeescript, hate it or love it

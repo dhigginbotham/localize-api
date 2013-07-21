@@ -21,10 +21,15 @@ var ds = new DataStore({
   filename: path.join(__dirname, 'db', 'fileStorage.db')
 });
 
+
+// define custom route endpoint
 var customRoute = function (req, res) {
   res.send(req.__coderbits);
 };
 
+
+// define some custom middleware to display the
+// functionality
 var middleOne = function (req, res, next) {
   console.log('I am the middleOne middleware :)');
   next();
@@ -35,6 +40,8 @@ var middleTwo = function (req, res, next) {
   next();
 };
 
+
+// define specific options for your `localizer`
 var opts = {
   path: 'coderbits',
   uri: 'https://coderbits.com',
@@ -47,6 +54,10 @@ var opts = {
 };
 
 var coderbits = new localize(opts);
+
+// when mounting this route you will need to
+// have access to `app`, otherwise it will have
+// nowhere to mount anything.
 
 coderbits.mount(app);
 
