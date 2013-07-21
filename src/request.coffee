@@ -44,18 +44,27 @@ requestsHandler = (req, opts, fn) ->
 
           if body? 
             
+            # build our cache object
             cache = JSON.parse body
+
+            # extend with a customizable
+            # stale object..
             cache.stale = self.stale
+            
+            # path to use for caching urls and
+            # serving them globally for all visitors
             cache.path = req.url
 
+            # build new object to store from our `Schema`
             insert = new self.ds.Schema cache, self.ds
-
+            
+            # lets insert this, with our schema of `opts`
             self.ds.insert insert, (err, inserted) ->
               return if err? then fn err, null
               if inserted? then fn null, inserted
           
           else
-            return fn "no body mate", null
+            return fn "something bad happened, id look into this...", null
   else
 
     options = 
