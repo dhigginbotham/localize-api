@@ -7,9 +7,9 @@ request = require "./request"
 # localize
 localize = (opts) ->
 
-  # additional prefix/prefix identifier so
+  # additional prefix/path identifier so
   # you can have multiple routes in place
-  @prefix = "github"
+  @path = "github"
 
   # we're not going to use a version by
   # default, too prone to fragmentation
@@ -68,13 +68,13 @@ localize = (opts) ->
   # included.
   if opts? then _.extend @, opts
 
-  # sanitize our @prefix variable and make sure that we're not going to break anything
+  # sanitize our @path variable and make sure that we're not going to break anything
   # note we're going to allow `/` inbetween our first and last index, this just keeps
   # us safe, and extendable.
-  if @prefix.indexOf "/" == 0 or @prefix.lastIndexOf "/" == 0 then @prefix.replace "/", ""
+  if @path.indexOf "/" == 0 or @path.lastIndexOf "/" == 0 then @path.replace "/", ""
 
-  # this should set the customKey as prefix if customKey was not set
-  if @customKey == null then @customKey = @prefix
+  # this should set the customKey as path if customKey was not set.
+  if @customKey == null then @customKey = @path
 
   # maintain our scope... es mui importante
   self = @
@@ -124,13 +124,13 @@ localize::mount = (app) ->
 
     # loop through our middleware and add it accordingly
     for middlewares in self.middleware
-      app.all "/#{self.prefix}*", middlewares
+      app.all "/#{self.path}*", middlewares
 
   # check for a custom route, otherwise have fun!
   if self.customRoute == null
-    app.all "/#{self.prefix}*", self.request, self.router
-  else if self.customRoute == false then app.all "/#{self.prefix}*", self.request
-  else app.all "/#{self.prefix}*", self.request, self.customRoute
+    app.all "/#{self.path}*", self.request, self.router
+  else if self.customRoute == false then app.all "/#{self.path}*", self.request
+  else app.all "/#{self.path}*", self.request, self.customRoute
 
   @
 

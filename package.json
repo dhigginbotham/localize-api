@@ -34,7 +34,7 @@
     "node": ">=0.8.0"
   },
   "scripts": {
-    "test": "mocha test/localize.coffee -R spec -t 3000 --compilers coffee:coffee-script"
+    "test": "mocha test/localize.coffee -R spec -t 4000 --compilers coffee:coffee-script"
   },  
   "bugs": "https://github.com/dhigginbotham/localize-api/issues",
   "repository": {
