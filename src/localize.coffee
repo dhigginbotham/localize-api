@@ -34,12 +34,17 @@ localize = (opts) ->
   @middleware = []
 
   # add a custom route handler, item will have
-  # access to `req` & `res`
+  # access to `req` & `res` @update - this now accepts
+  # `false` allowing you to not use a route at all, but
+  # to use as a middleware only.
   @customRoute = null
 
   # define a custom `req` object resource
   # name to store our request body to
   @customKey = "__localized"
+
+  # toggle to use `req.` or `res.locals.` will default
+  @locals = false
 
   ### settings to store cache items ###
 
@@ -52,7 +57,8 @@ localize = (opts) ->
   @ds = null
 
   # define default cache length, defaults to 10 hours --
-  # this uses the [`ms`](https://npmjs.org/package/ms) module, so you have a small set of stale loving
+  # this uses the [`ms`](https://npmjs.org/package/ms) module, 
+  # so you have a small set of stale loving
   @stale = "1m"
 
   # define our default cache type, accepts `nedb` and `mongodb`
@@ -77,9 +83,15 @@ localize = (opts) ->
       # do a request with our url map, this
       # should work for our uses
       new request req, self, (err, resp) ->
+
         # set `req[self.customKey]` to our body
         req[self.customKey] = resp
-    
+        
+        # allow to set directly onto `res.locals` this will
+        # all you to direcly map this to a custom endpoint with
+        # `res.render()` without any added steps
+        if self.locals == true then res.locals[self.customKey] = resp
+
         next()
     
     else
@@ -88,8 +100,9 @@ localize = (opts) ->
 
   # default router, this should send your json response back to you!!
   @router = (req, res) ->
+    # set `req[self.customKey]` to our body
     res.send req[self.customKey]
-
+    
   @
 
 localize::mount = (app) ->
@@ -108,6 +121,7 @@ localize::mount = (app) ->
   # check for a custom route, otherwise have fun!
   if self.customRoute == null
     app.all "/#{self.path}*", self.request, self.router
+  else if self.customRoute == false then app.all "/#{self.path}*", self.request
   else app.all "/#{self.path}*", self.request, self.customRoute
 
   @

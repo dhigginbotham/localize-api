@@ -24,17 +24,17 @@ extended = (ds) ->
   int = ms(_interval)
 
   ds.loadDatabase (err) -> # dont use this, use interior option `autoload: true` for nedb
-    return if err? then throw err
+    return if err? then err
     
     # run this once, because it's okay.
     self.garbageCollection (err, removed) ->
-      return if err? throw err
+      return if err? err
       if removed > 0
         console.log "NeDB: sent #{removed} items to garbarge collection"
 
     setInterval ->
       self.garbageCollection (err, removed) ->
-        return if err? throw err
+        return if err? err
         if removed > 0
           console.log "NeDB: sent #{removed} items to garbarge collection"
     , int # setting this to ten minute increments should do the trick.
@@ -48,7 +48,7 @@ extended::Schema = (cache, ds) ->
   
   @stale = stale
 
-  @store = undefined
+  @store = `undefined`
   
   if cache? then _.extend @, cache
 
@@ -57,7 +57,7 @@ extended::Schema = (cache, ds) ->
     @stale = @_stale
     # clear this out w/ `undefined` so it doesn't get
     # stored into the doc
-    @_stale = undefined
+    @_stale = `undefined`
 
   _stale = ms(@stale)
 
@@ -68,13 +68,13 @@ extended::Schema = (cache, ds) ->
   if @stale? or @stale != false
     setTimeout ->
       ds.garbageCollection (err, count) ->
-        return if err? then throw err else if count > 0 then console.log "removed #{count} items from cache"
+        return if err? then err else if count > 0 then console.log "removed #{count} items from cache"
     , self.stale
 
     @stale = Date.now() + parseInt self.stale
 
   else
-    @stale = undefined
+    @stale = `undefined`
 
   @
 

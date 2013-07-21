@@ -1,8 +1,16 @@
 {
   "name": "localize-api",
-  "version": "0.0.3-1",
+  "version": "0.0.4",
   "description": "helpful resource for getting external api's and making them local",
   "main": "lib/index.js",
+  "keywords": [
+    "restify",
+    "cache",
+    "localize",
+    "cors",
+    "garbage collection",
+    "nedb"
+  ],
   "author": {
     "name": "David Higginbotham",
     "email": "davehigginbotham@gmail.com"
@@ -19,9 +27,7 @@
     "uglify-js": "~2.3.6",
     "stylus": "~0.34.1",
     "expect.js": "~0.2.0",
-    "flour": "~0.5.5",
-    "underscore": "~1.5.1",
-    "request": "~2.22.0"
+    "flour": "~0.5.5"
   },
   "engines": {
     "node": ">=0.8.0"

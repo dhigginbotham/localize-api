@@ -1,0 +1,195 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish' ]
+2 info using npm@1.2.2
+3 info using node@v0.8.18
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 verbose publish [ '.' ]
+6 verbose read json E:\Node\localize-api\package.json
+7 verbose cache add [ '.', null ]
+8 verbose cache add name=undefined spec="." args=[".",null]
+9 verbose parsed url { pathname: '.', path: '.', href: '.' }
+10 silly lockFile 3a52ce78- .
+11 verbose lock . C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\3a52ce78-.lock
+12 verbose read json package.json
+13 verbose tar pack [ 'C:\\Users\\DHIGGI~1.HIL\\AppData\\Local\\Temp\\npm-6824\\1374407691780-0.03964416100643575\\tmp.tgz',
+13 verbose tar pack   '.' ]
+14 verbose tarball C:\Users\DHIGGI~1.HIL\AppData\Local\Temp\npm-6824\1374407691780-0.03964416100643575\tmp.tgz
+15 verbose folder .
+16 info prepublish localize-api@0.0.4
+17 silly lockFile c97fc5d6-1780-0-03964416100643575-tmp-tgz C:\Users\DHIGGI~1.HIL\AppData\Local\Temp\npm-6824\1374407691780-0.03964416100643575\tmp.tgz
+18 verbose lock C:\Users\DHIGGI~1.HIL\AppData\Local\Temp\npm-6824\1374407691780-0.03964416100643575\tmp.tgz C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\c97fc5d6-1780-0-03964416100643575-tmp-tgz.lock
+19 silly lockFile c97fc5d6-1780-0-03964416100643575-tmp-tgz C:\Users\DHIGGI~1.HIL\AppData\Local\Temp\npm-6824\1374407691780-0.03964416100643575\tmp.tgz
+20 verbose tar unpack C:\Users\DHIGGI~1.HIL\AppData\Local\Temp\npm-6824\1374407691780-0.03964416100643575\tmp.tgz
+21 silly lockFile 6d285272-1780-0-03964416100643575-package C:\Users\DHIGGI~1.HIL\AppData\Local\Temp\npm-6824\1374407691780-0.03964416100643575\package
+22 verbose lock C:\Users\DHIGGI~1.HIL\AppData\Local\Temp\npm-6824\1374407691780-0.03964416100643575\package C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\6d285272-1780-0-03964416100643575-package.lock
+23 silly gunzTarPerm modes [ '755', '644' ]
+24 silly gunzTarPerm extractEntry package.json
+25 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+26 silly gunzTarPerm extractEntry .npmignore
+27 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
+28 silly gunzTarPerm extractEntry README.md
+29 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+30 silly gunzTarPerm extractEntry .gitattributes
+31 silly gunzTarPerm modified mode [ '.gitattributes', 438, 420 ]
+32 silly gunzTarPerm extractEntry Cakefile
+33 silly gunzTarPerm modified mode [ 'Cakefile', 438, 420 ]
+34 silly gunzTarPerm extractEntry examples/package.json
+35 silly gunzTarPerm modified mode [ 'examples/package.json', 438, 420 ]
+36 silly gunzTarPerm extractEntry examples/app.js
+37 silly gunzTarPerm modified mode [ 'examples/app.js', 438, 420 ]
+38 silly gunzTarPerm extractEntry lib/extended.js
+39 silly gunzTarPerm modified mode [ 'lib/extended.js', 438, 420 ]
+40 silly gunzTarPerm extractEntry lib/index.js
+41 silly gunzTarPerm modified mode [ 'lib/index.js', 438, 420 ]
+42 silly gunzTarPerm extractEntry lib/localize.js
+43 silly gunzTarPerm modified mode [ 'lib/localize.js', 438, 420 ]
+44 silly gunzTarPerm extractEntry lib/request.js
+45 silly gunzTarPerm modified mode [ 'lib/request.js', 438, 420 ]
+46 silly gunzTarPerm extractEntry LICENSE.md
+47 silly gunzTarPerm modified mode [ 'LICENSE.md', 438, 420 ]
+48 silly gunzTarPerm extractEntry src/extended.coffee
+49 silly gunzTarPerm modified mode [ 'src/extended.coffee', 438, 420 ]
+50 silly gunzTarPerm extractEntry src/index.coffee
+51 silly gunzTarPerm modified mode [ 'src/index.coffee', 438, 420 ]
+52 silly gunzTarPerm extractEntry src/localize.coffee
+53 silly gunzTarPerm modified mode [ 'src/localize.coffee', 438, 420 ]
+54 silly gunzTarPerm extractEntry src/request.coffee
+55 silly gunzTarPerm modified mode [ 'src/request.coffee', 438, 420 ]
+56 verbose read json C:\Users\DHIGGI~1.HIL\AppData\Local\Temp\npm-6824\1374407691780-0.03964416100643575\package\package.json
+57 silly lockFile 6d285272-1780-0-03964416100643575-package C:\Users\DHIGGI~1.HIL\AppData\Local\Temp\npm-6824\1374407691780-0.03964416100643575\package
+58 verbose from cache C:\Users\DHIGGI~1.HIL\AppData\Local\Temp\npm-6824\1374407691780-0.03964416100643575\package\package.json
+59 verbose tar pack [ 'C:\\Users\\DHigginbotham.HILLTECH\\AppData\\Roaming\\npm-cache\\localize-api\\0.0.4\\package.tgz',
+59 verbose tar pack   'C:\\Users\\DHIGGI~1.HIL\\AppData\\Local\\Temp\\npm-6824\\1374407691780-0.03964416100643575\\package' ]
+60 verbose tarball C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\localize-api\0.0.4\package.tgz
+61 verbose folder C:\Users\DHIGGI~1.HIL\AppData\Local\Temp\npm-6824\1374407691780-0.03964416100643575\package
+62 silly lockFile 662d9e03-e-localize-api-0-0-4-package-tgz C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\localize-api\0.0.4\package.tgz
+63 verbose lock C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\localize-api\0.0.4\package.tgz C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\662d9e03-e-localize-api-0-0-4-package-tgz.lock
+64 silly lockFile 662d9e03-e-localize-api-0-0-4-package-tgz C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\localize-api\0.0.4\package.tgz
+65 silly lockFile 59788eca-cache-localize-api-0-0-4-package C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\localize-api\0.0.4\package
+66 verbose lock C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\localize-api\0.0.4\package C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\59788eca-cache-localize-api-0-0-4-package.lock
+67 silly lockFile 59788eca-cache-localize-api-0-0-4-package C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\localize-api\0.0.4\package
+68 verbose tar unpack C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\localize-api\0.0.4\package.tgz
+69 silly lockFile 59788eca-cache-localize-api-0-0-4-package C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\localize-api\0.0.4\package
+70 verbose lock C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\localize-api\0.0.4\package C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\59788eca-cache-localize-api-0-0-4-package.lock
+71 silly gunzTarPerm modes [ '755', '644' ]
+72 silly gunzTarPerm extractEntry package.json
+73 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+74 silly gunzTarPerm extractEntry .npmignore
+75 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
+76 silly gunzTarPerm extractEntry README.md
+77 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+78 silly gunzTarPerm extractEntry .gitattributes
+79 silly gunzTarPerm modified mode [ '.gitattributes', 438, 420 ]
+80 silly gunzTarPerm extractEntry Cakefile
+81 silly gunzTarPerm modified mode [ 'Cakefile', 438, 420 ]
+82 silly gunzTarPerm extractEntry examples/package.json
+83 silly gunzTarPerm modified mode [ 'examples/package.json', 438, 420 ]
+84 silly gunzTarPerm extractEntry examples/app.js
+85 silly gunzTarPerm modified mode [ 'examples/app.js', 438, 420 ]
+86 silly gunzTarPerm extractEntry lib/extended.js
+87 silly gunzTarPerm modified mode [ 'lib/extended.js', 438, 420 ]
+88 silly gunzTarPerm extractEntry lib/index.js
+89 silly gunzTarPerm modified mode [ 'lib/index.js', 438, 420 ]
+90 silly gunzTarPerm extractEntry lib/localize.js
+91 silly gunzTarPerm modified mode [ 'lib/localize.js', 438, 420 ]
+92 silly gunzTarPerm extractEntry lib/request.js
+93 silly gunzTarPerm modified mode [ 'lib/request.js', 438, 420 ]
+94 silly gunzTarPerm extractEntry LICENSE.md
+95 silly gunzTarPerm modified mode [ 'LICENSE.md', 438, 420 ]
+96 silly gunzTarPerm extractEntry src/extended.coffee
+97 silly gunzTarPerm modified mode [ 'src/extended.coffee', 438, 420 ]
+98 silly gunzTarPerm extractEntry src/index.coffee
+99 silly gunzTarPerm modified mode [ 'src/index.coffee', 438, 420 ]
+100 silly gunzTarPerm extractEntry src/localize.coffee
+101 silly gunzTarPerm modified mode [ 'src/localize.coffee', 438, 420 ]
+102 silly gunzTarPerm extractEntry src/request.coffee
+103 silly gunzTarPerm modified mode [ 'src/request.coffee', 438, 420 ]
+104 verbose read json C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\localize-api\0.0.4\package\package.json
+105 silly lockFile 59788eca-cache-localize-api-0-0-4-package C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\localize-api\0.0.4\package
+106 silly shasum updated bytes 7634
+107 info shasum 28f8d358161a0d82f9230cf5a7fd91fc1baf35b5
+107 info shasum C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\localize-api\0.0.4\package.tgz
+108 verbose from cache C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\localize-api\0.0.4\package\package.json
+109 verbose chmod C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\localize-api\0.0.4\package.tgz 644
+110 silly chown skipping for windows C:\Users\DHigginbotham.HILLTECH\AppData\Roaming\npm-cache\localize-api\0.0.4\package.tgz
+111 silly lockFile 3a52ce78- .
+112 silly publish { name: 'localize-api',
+112 silly publish   version: '0.0.4',
+112 silly publish   description: 'helpful resource for getting external api\'s and making them local',
+112 silly publish   main: 'lib/index.js',
+112 silly publish   keywords:
+112 silly publish    [ 'restify',
+112 silly publish      'cache',
+112 silly publish      'localize',
+112 silly publish      'cors',
+112 silly publish      'garbage collection',
+112 silly publish      'nedb' ],
+112 silly publish   author:
+112 silly publish    { name: 'David Higginbotham',
+112 silly publish      email: 'davehigginbotham@gmail.com' },
+112 silly publish   license: 'MIT',
+112 silly publish   dependencies: { underscore: 'latest', request: 'latest', ms: '~0.6.1' },
+112 silly publish   devDependencies:
+112 silly publish    { 'coffee-script': '~1.6.3',
+112 silly publish      mocha: '~1.12.0',
+112 silly publish      'uglify-js': '~2.3.6',
+112 silly publish      stylus: '~0.34.1',
+112 silly publish      'expect.js': '~0.2.0',
+112 silly publish      flour: '~0.5.5' },
+112 silly publish   engines: { node: '>=0.8.0' },
+112 silly publish   bugs: 'https://github.com/dhigginbotham/localize-api/issues',
+112 silly publish   repository:
+112 silly publish    { type: 'git',
+112 silly publish      url: 'git@github.com:dhigginbotham/localize-api.git' },
+112 silly publish   readme: '## localize-api\r\nI needed a way to have more control over external API\'s as well as keep the REST API functionality. This module allows you to localize external API\'s along with a simple cache layer/garbarge collection utilizing [`nedb`](https://github.com/louischatriot/nedb), I plan to build in [`mongodb`](https://github.com/mongodb/node-mongodb-native) as well. \r\n\r\n![](https://nodei.co/npm/localize-api.png?downloads=true&stars=true) \r\n\r\n![](https://badge.fury.io/js/localize-api.png)\r\n\r\n### Features\r\n- express api mount/router for external resources\r\n- 100% coffeescript, hate it or love it\r\n- negates the whole clientside `cors` issue for some people by using request, and localizes to a RESTful route\r\n- If you\'re using cache it\'s going to help avoid making a lot of chatty calls to an API, especially if you\'re doing a lot of paging eg:\r\n  \r\n  ```\r\n  GET /github/users/dhigginbotham/following?per_page=300 200 605ms\r\n  GET /github/users/dhigginbotham/following?per_page=300 304 24ms\r\n  ```\r\n\r\n### Installation\r\n```md\r\nnpm install localize-api --save\r\n```\r\n\r\nYou\'ll also need CoffeeScript, it\'s easy though: `npm install coffeescript -g`\r\n\r\n## Full Example w/ Express, and options\r\nThis example depends on having [`express.js`](https://github.com/visionmedia/express) and [`nedb`](https://github.com/louischatriot/nedb) available:\r\n\r\n  `npm install express nedb --save`\r\n\r\n```js\r\nvar express = require(\'express\');\r\nvar app = express();\r\n\r\nvar server = require("http").createServer(app);\r\n\r\nvar path = require(\'path\');\r\nvar DataStore = require(\'nedb\');\r\nvar localize = require(\'localize-api\');\r\n\r\napp.set(\'port\', 1337);\r\napp.use(express.bodyParser());\r\napp.use(express.methodOverride());\r\n\r\n// simple example\r\nvar github = new localize();\r\n\r\ngithub.mount(app);\r\n\r\n// full example\r\nvar ds = new DataStore({\r\n  filename: path.join(__dirname, \'db\', \'fileStorage.db\');\r\n});\r\n\r\nvar customRoute = function (req, res) {\r\n  res.send(req.__coderbits);\r\n};\r\n\r\nvar middleOne = function (req, res, next) {\r\n  console.log("I am the middleOne middleware :)");\r\n  next();\r\n};\r\n\r\nvar middleTwo = function (req, res, next) {\r\n  console.log("I am the middleTwo middleware :) :)");\r\n  next();\r\n};\r\n\r\nvar opts = {\r\n  path: \'coderbits\',\r\n  uri: \'https://coderbits.com\',\r\n  customKey: \'__coderbits\',\r\n  stale: \'5m\',\r\n  cache: true,\r\n  ds: ds,\r\n  middleware: [middleOne, middleTwo],\r\n  customRoute: customRoute\r\n};\r\n\r\nvar coderbits = new localize(opts);\r\n\r\ncoderbits.mount(app);\r\n\r\nserver.listen(app.get(\'port\'), function () {\r\n  console.log(\'listening on port \' + app.get(\'port\'));\r\n});\r\n\r\n// GET http://localhost:1337/coderbits/dhz.json\r\n```\r\n\r\n### Options\r\nName | Defaults | Info\r\n--- | --- | ---\r\n`accepted` | `[\'post\', \'put\', \'delete\', \'get\']` | accepted methods to run external requests against, expects an array\r\n`cache` | `false` | uses [`nedb`](https://github.com/louischatriot/nedb) currently, still finishing `mongodb`\r\n`customKey` | `__localized` | override the default `req` object addition\r\n`customRoute` | `null` | allows you to pass a custom route through as your endpoint, helpful if you want to use the output to template a file. **New** this route now accepts `false` to use this simply as a middleware.\r\n`ds` | `DataStore` | you\'ll get one of these from [`nedb`](https://github.com/louischatriot/nedb)\r\n`locals` | `false` | if `true` it will set `res.locals[customKey]` as well as `req[customKey]`\r\n`middleware` | `[]` | allows you to add custom middleware to your api, good for authentication/ensureLogin etc\r\n`path` | `github` | defaults to `github` which is the default api to get this going quickly\r\n`stale` | `1m` | uses `ms` module for ez times eg: `1s, 1m, 5m, 1h, 10h, 1d, etc`\r\n`uri` | `https://api.github.com` | api path to localize\r\n\r\n\r\n### License\r\n```md\r\nThe MIT License (MIT)\r\n\r\nCopyright (c) 2013 David Higginbotham \r\n\r\nPermission is hereby granted, free of charge, to any person obtaining a copy\r\nof this software and associated documentation files (the "Software"), to deal\r\nin the Software without restriction, including without limitation the rights\r\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\r\ncopies of the Software, and to permit persons to whom the Software is\r\nfurnished to do so, subject to the following conditions:\r\n\r\nThe above copyright notice and this permission notice shall be included in\r\nall copies or substantial portions of the Software.\r\n\r\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\r\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\r\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\r\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\r\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\r\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\r\nTHE SOFTWARE.\r\n```\r\n',
+112 silly publish   readmeFilename: 'README.md',
+112 silly publish   _id: 'localize-api@0.0.4',
+112 silly publish   dist: { shasum: '28f8d358161a0d82f9230cf5a7fd91fc1baf35b5' },
+112 silly publish   _from: '.' }
+113 verbose url raw localize-api
+114 verbose url resolving [ 'https://registry.npmjs.org/', './localize-api' ]
+115 verbose url resolved https://registry.npmjs.org/localize-api
+116 info trying registry request attempt 1 at 05:54:51
+117 http PUT https://registry.npmjs.org/localize-api
+118 http 409 https://registry.npmjs.org/localize-api
+119 verbose url raw localize-api
+120 verbose url resolving [ 'https://registry.npmjs.org/', './localize-api' ]
+121 verbose url resolved https://registry.npmjs.org/localize-api
+122 info trying registry request attempt 1 at 05:54:52
+123 http GET https://registry.npmjs.org/localize-api
+124 http 200 https://registry.npmjs.org/localize-api
+125 verbose url raw localize-api/0.0.4/-tag/latest
+126 verbose url resolving [ 'https://registry.npmjs.org/',
+126 verbose url resolving   './localize-api/0.0.4/-tag/latest' ]
+127 verbose url resolved https://registry.npmjs.org/localize-api/0.0.4/-tag/latest
+128 info trying registry request attempt 1 at 05:54:53
+129 http PUT https://registry.npmjs.org/localize-api/0.0.4/-tag/latest
+130 http 403 https://registry.npmjs.org/localize-api/0.0.4/-tag/latest
+131 error publish Error sending version data
+132 error Error: forbidden user: null not authorized to modify localize-api
+132 error Changed: dist-tags.latest "0.0.3-1" -> "0.0.4"
+132 error Added: versions.0.0.4
+132 error Changed: time.modified "2013-07-20T03:20:51.149Z" -> "2013-07-21T11:34:36.046Z"
+132 error Added: time.0.0.4: localize-api/0.0.4/-tag/latest
+132 error     at RegClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:259:14)
+132 error     at Request.init.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\main.js:120:22)
+132 error     at Request.EventEmitter.emit (events.js:99:17)
+132 error     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\main.js:648:16)
+132 error     at Request.EventEmitter.emit (events.js:126:20)
+132 error     at IncomingMessage.Request.start.self.req.self.httpModule.request.buffer (C:\Program Files\nodejs\node_modules\npm\node_modules\request\main.js:610:14)
+132 error     at IncomingMessage.EventEmitter.emit (events.js:126:20)
+132 error     at IncomingMessage._emitEnd (http.js:366:10)
+132 error     at HTTPParser.parserOnMessageComplete [as onMessageComplete] (http.js:149:23)
+132 error     at CleartextStream.socketOnData [as ondata] (http.js:1447:20)
+133 error If you need help, you may report this log at:
+133 error     <http://github.com/isaacs/npm/issues>
+133 error or email it to:
+133 error     <npm-@googlegroups.com>
+134 error System Windows_NT 6.1.7601
+135 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish"
+136 error cwd E:\Node\localize-api
+137 error node -v v0.8.18
+138 error npm -v 1.2.2
+139 verbose exit [ 1, true ]
