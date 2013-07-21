@@ -36,6 +36,8 @@
 
 <p><img src="https://badge.fury.io/js/localize-api.png" alt=""></p>
 
+<p><img src="https://drone.io/github.com/dhigginbotham/localize-api/status.png" alt=""></p>
+
 <h3>
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h3>
 
@@ -153,12 +155,18 @@ GET /github/users/dhigginbotham/following?per_page=300 304 24ms
 <tr>
 <td><code>customRoute</code></td>
 <td><code>null</code></td>
-<td>allows you to pass a custom route through as your endpoint, helpful if you want to use the output to template a file</td>
+<td>allows you to pass a custom route through as your endpoint, helpful if you want to use the output to template a file. <strong>New</strong> this route now accepts <code>false</code> to use this simply as a middleware.</td>
 </tr>
 <tr>
 <td><code>ds</code></td>
 <td><code>DataStore</code></td>
 <td>you'll get one of these from <a href="https://github.com/louischatriot/nedb"><code>nedb</code></a>
+</td>
+</tr>
+<tr>
+<td><code>locals</code></td>
+<td><code>false</code></td>
+<td>if <code>true</code> it will set <code>res.locals[customKey]</code> as well as <code>req[customKey]</code>
 </td>
 </tr>
 <tr>
