@@ -54,15 +54,15 @@ localize = (opts) ->
   # define our db as null, we'll obviously need one
   # this should be compatible with `nedb` and `mongodb`
   # out of the box `<3 nedb!!!`
-  @ds = null
+  if @cache == true then @ds = null
 
   # define default cache length, defaults to 10 hours --
   # this uses the [`ms`](https://npmjs.org/package/ms) module, 
   # so you have a small set of stale loving
-  @stale = "1m"
+  if @cache == true then @stale = "1m"
 
   # define our default cache type, accepts `nedb` and `mongodb`
-  @cacheType = "nedb"
+  if @cache == true then @cacheType = "nedb"
 
   # only extend this class if options is
   # included.
