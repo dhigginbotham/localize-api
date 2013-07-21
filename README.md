@@ -68,7 +68,7 @@ var middleTwo = function (req, res, next) {
   next();
 };
 
-var opts = {
+var coderbitsOpts = {
   path: 'coderbits',
   uri: 'https://coderbits.com',
   customKey: '__coderbits',
@@ -79,7 +79,7 @@ var opts = {
   customRoute: customRoute
 };
 
-var coderbits = new localize(opts);
+var coderbits = new localize(coderbitsOpts);
 
 coderbits.mount(app);
 
