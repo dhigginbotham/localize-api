@@ -10,7 +10,7 @@ path = require "path"
 # store this to pass around our scope
 githubTest = null
 
-port = 3009
+port = process.env.port || 3009
 url = "http://localhost"
 
 full_url = "#{url}:#{port}"
