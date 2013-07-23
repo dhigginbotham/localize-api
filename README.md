@@ -95,8 +95,8 @@ Name | Defaults | Info
 --- | --- | ---
 `accepted` | `['post', 'put', 'delete', 'get']` | accepted methods to run external requests against, expects an array
 `cache` | `false` | uses [`nedb`](https://github.com/louischatriot/nedb) currently, still finishing `mongodb`
-`customKey` | `__localized` | override the default `req` object addition
-`customRoute` | `null` | allows you to pass a custom route through as your endpoint, helpful if you want to use the output to template a file. **New** this route now accepts `false` to use this simply as a middleware.
+`customKey` | `path` | defaults to your path string, for instance if your path was 'github', `req.github` would be set 
+`customRoute` | `null` | allows you to pass a custom route through as your endpoint, helpful if you want to use the output to template a file
 `ds` | `DataStore` | you'll get one of these from [`nedb`](https://github.com/louischatriot/nedb)
 `locals` | `false` | if `true` it will set `res.locals[customKey]` as well as `req[customKey]`
 `middleware` | `[]` | allows you to add custom middleware to your api, good for authentication/ensureLogin etc
