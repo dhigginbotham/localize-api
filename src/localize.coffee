@@ -71,7 +71,7 @@ localize = (opts) ->
   # sanitize our @path variable and make sure that we're not going to break anything
   # note we're going to allow `/` inbetween our first and last index, this just keeps
   # us safe, and extendable.
-  if @path.indexOf "/" == 0 or @path.lastIndexOf "/" == 0 then @path.replace "/", ""
+  if @path.indexOf("/") == 0 then @path = @path.substr(1);
 
   # this should set the customKey as path if customKey was not set.
   if @customKey == null then @customKey = @path
