@@ -1,33 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>LOCALIZE by dhigginbotham</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+    <title>LOCALIZE by dhigginbotham</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
+    <header>
+      <div class="inner">
         <h1>LOCALIZE</h1>
-        <p>&quot;localize&quot; external API's and cache them for awhile</p>
-        <p class="view"><a href="https://github.com/dhigginbotham/localize-api">View the Project on GitHub <small>dhigginbotham/localize-api</small></a></p>
-        <ul>
-          <li><a href="https://github.com/dhigginbotham/localize-api/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/dhigginbotham/localize-api/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/dhigginbotham/localize-api">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h2>
+        <h2>&quot;localize&quot; external API's and cache them for awhile</h2>
+        <a href="https://github.com/dhigginbotham/localize-api" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h2>
 <a name="localize-api" class="anchor" href="#localize-api"><span class="octicon octicon-link"></span></a>localize-api</h2>
 
 <p>I needed a way to have more control over external API's as well as keep the REST API functionality. This module allows you to localize external API's along with a simple cache layer/garbarge collection utilizing <a href="https://github.com/louischatriot/nedb"><code>nedb</code></a>, I plan to build in <a href="https://github.com/mongodb/node-mongodb-native"><code>mongodb</code></a> as well. </p>
@@ -104,7 +105,7 @@ GET /github/users/dhigginbotham/following?per_page=300 304 24ms
   <span class="nx">next</span><span class="p">();</span>
 <span class="p">};</span>
 
-<span class="kd">var</span> <span class="nx">opts</span> <span class="o">=</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">coderbitsOpts</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">path</span><span class="o">:</span> <span class="s1">'coderbits'</span><span class="p">,</span>
   <span class="nx">uri</span><span class="o">:</span> <span class="s1">'https://coderbits.com'</span><span class="p">,</span>
   <span class="nx">customKey</span><span class="o">:</span> <span class="s1">'__coderbits'</span><span class="p">,</span>
@@ -115,7 +116,7 @@ GET /github/users/dhigginbotham/following?per_page=300 304 24ms
   <span class="nx">customRoute</span><span class="o">:</span> <span class="nx">customRoute</span>
 <span class="p">};</span>
 
-<span class="kd">var</span> <span class="nx">coderbits</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">localize</span><span class="p">(</span><span class="nx">opts</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">coderbits</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">localize</span><span class="p">(</span><span class="nx">coderbitsOpts</span><span class="p">);</span>
 
 <span class="nx">coderbits</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
 
@@ -149,13 +150,13 @@ GET /github/users/dhigginbotham/following?per_page=300 304 24ms
 </tr>
 <tr>
 <td><code>customKey</code></td>
-<td><code>__localized</code></td>
-<td>override the default <code>req</code> object addition</td>
+<td><code>path</code></td>
+<td>defaults to your path string, for instance if your path was 'github', <code>req.github</code> would be set</td>
 </tr>
 <tr>
 <td><code>customRoute</code></td>
 <td><code>null</code></td>
-<td>allows you to pass a custom route through as your endpoint, helpful if you want to use the output to template a file. <strong>New</strong> this route now accepts <code>false</code> to use this simply as a middleware.</td>
+<td>allows you to pass a custom route through as your endpoint, helpful if you want to use the output to template a file</td>
 </tr>
 <tr>
 <td><code>ds</code></td>
@@ -216,13 +217,25 @@ GET /github/users/dhigginbotham/following?per_page=300 304 24ms
 <span class="n">OUT</span> <span class="n">OF</span> <span class="n">OR</span> <span class="n">IN</span> <span class="n">CONNECTION</span> <span class="n">WITH</span> <span class="n">THE</span> <span class="n">SOFTWARE</span> <span class="n">OR</span> <span class="n">THE</span> <span class="n">USE</span> <span class="n">OR</span> <span class="n">OTHER</span> <span class="n">DEALINGS</span> <span class="n">IN</span>
 <span class="n">THE</span> <span class="n">SOFTWARE</span><span class="p">.</span>
 </pre></div>
-      </section>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/dhigginbotham/localize-api/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/dhigginbotham/localize-api/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/dhigginbotham/localize-api"></a> is maintained by <a href="https://github.com/dhigginbotham">dhigginbotham</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
-    <footer>
-      <p>Project maintained by <a href="https://github.com/dhigginbotham">dhigginbotham</a></p>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+
+  
   </body>
 </html>
