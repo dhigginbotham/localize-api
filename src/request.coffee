@@ -70,7 +70,7 @@ requestsHandler = (req, opts, fn) ->
     options = 
       uri: url
       method: req.method
-      headers: "User-Agent": "#{self.path}-surfing"
+      headers: req.headers
 
     request options, (err, resp, body) ->
       return if err? then fn err, null
