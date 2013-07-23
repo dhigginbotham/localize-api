@@ -24,5 +24,7 @@ stati::find = (query, fn) ->
 
     if found.length > 0 then fn null, found
 
+
+    console.log "mom"
 module.exports = stati
 
