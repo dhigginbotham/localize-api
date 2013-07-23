@@ -19,7 +19,7 @@ stati = (opts, model, app) ->
 stati::find = (query, fn) ->
 
   q = if query? then query else {}
-  db[model].find q, (err, found) ->
+  [model].find q, (err, found) ->
     return if err? then fn err, null
 
     if found.length > 0 then fn null, found
