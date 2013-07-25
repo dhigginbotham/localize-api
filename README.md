@@ -23,7 +23,7 @@ I needed a way to have more control over external API's as well as keep the REST
 npm install localize-api --save
 ```
 
-You'll also need CoffeeScript, it's easy though: `npm install coffeescript -g`
+**Heads up!** You no longer need coffeescript, (unless you want to run the tests). I'll convert those so the non-cs peeps can have a go as well. - Cheers
 
 ## Full Example w/ Express, and options
 This example depends on having [`express.js`](https://github.com/visionmedia/express) and [`nedb`](https://github.com/louischatriot/nedb) available:
