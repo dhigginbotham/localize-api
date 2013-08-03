@@ -1,11 +1,19 @@
 request = require "request"
 expect = require "expect.js"
 _ = require "underscore"
+
 express = require "express"
+app = express()
 
 localize = require "..", "src", "localize.coffee"
 
 path = require "path"
+
+server = require('http').createServer app
+
+app.set "port", port
+app.use express.bodyParser()
+app.use express.methodOverride()
 
 # store this to pass around our scope
 githubTest = null
@@ -76,13 +84,6 @@ describe "build an inspect a localize object", ->
 describe "test an internal API resource", ->
 
   it "should test a local development server and do some github surfing..", (done) ->
-    app = express()
-
-    server = require('http').createServer app
-
-    app.set "port", port
-    app.use express.bodyParser()
-    app.use express.methodOverride()
 
     githubTest.mount app
 
@@ -97,6 +98,8 @@ describe "test an internal API resource", ->
       if not err? and resp.statusCode == 200
         
         expect(body).not.to.be(null)
+        console.log body
         
         done()
-
+      else 
+        done()
