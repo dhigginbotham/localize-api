@@ -28,14 +28,15 @@
     "stylus": "~0.34.1",
     "expect.js": "~0.2.0",
     "express": "latest",
-    "flour": "~0.5.5"
+    "flour": "~0.5.5",
+    "nedb": "~0.8.5"
   },
   "engines": {
     "node": ">=0.8.0"
   },
   "scripts": {
     "test": "mocha test/localize.coffee -R spec -t 4000 --compilers coffee:coffee-script"
-  },  
+  },
   "bugs": "https://github.com/dhigginbotham/localize-api/issues",
   "repository": {
     "type": "git",

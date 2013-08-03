@@ -5,7 +5,7 @@ var server = require('http').createServer(app);
 
 var path = require('path');
 var DataStore = require('nedb');
-var localize = require('localize-api');
+var localize = require('../../lib');
 
 app.set('port', 1337);
 app.use(express.bodyParser());
@@ -54,6 +54,8 @@ var opts = {
 };
 
 var coderbits = new localize(opts);
+
+console.log(coderbits);
 
 // when mounting this route you will need to
 // have access to `app`, otherwise it will have
