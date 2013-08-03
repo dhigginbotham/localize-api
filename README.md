@@ -10,6 +10,7 @@ I needed a way to have more control over external API's as well as keep the REST
 ### Features
 - express api mount/router for external resources
 - 100% coffeescript, hate it or love it
+- this module wouldn't be anywhere near as cool if it wasn't for [`nedb`](https://github.com/louischatriot/nedb). If you're not familiar with it, I suggest you take a look because nedb by itself is really powerful as well.
 - negates the whole clientside `cors` issue for some people by using request, and localizes to a RESTful route
 - If you're using cache it's going to help avoid making a lot of chatty calls to an API, especially if you're pulling large datasets eg:
   
