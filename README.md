@@ -11,7 +11,7 @@ I needed a way to have more control over external API's as well as keep the REST
 - express api mount/router for external resources
 - 100% coffeescript, hate it or love it
 - negates the whole clientside `cors` issue for some people by using request, and localizes to a RESTful route
-- If you're using cache it's going to help avoid making a lot of chatty calls to an API, especially if you're doing a lot of paging eg:
+- If you're using cache it's going to help avoid making a lot of chatty calls to an API, especially if you're pulling large datasets eg:
   
   ```
   GET /github/users/dhigginbotham/following?per_page=300 200 605ms
@@ -23,12 +23,35 @@ I needed a way to have more control over external API's as well as keep the REST
 npm install localize-api --save
 ```
 
-**Heads up!** You no longer need coffeescript, (unless you want to run the tests). I'll convert those so the non-cs peeps can have a go as well. - Cheers
+## Simple Example
+```js
+var express = require('express');
+var app = express();
+var server = require('http').createServer(app);
 
-## Full Example w/ Express, and options
+// include localize-api module
+var localize = require('localize-api');
+
+app.set('port', 1337);
+app.use(express.bodyParser());
+
+// init localize
+var github = new localize();
+
+// mount paths
+github.mount(app);
+
+server.listen(app.get('port'), function () {
+  console.log('listening on port ' + app.get('port'));
+});
+
+// GET http://localhost:1337/github/users/dhigginbotham
+```
+
+## Full Example
 This example depends on having [`express.js`](https://github.com/visionmedia/express) and [`nedb`](https://github.com/louischatriot/nedb) available:
 
-  `npm install express nedb --save`
+  `npm install nedb --save`
 
 ```js
 var express = require('express');
@@ -44,12 +67,6 @@ app.set('port', 1337);
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 
-// simple example
-var github = new localize();
-
-github.mount(app);
-
-// full example
 var ds = new DataStore({
   filename: path.join(__dirname, 'db', 'fileStorage.db');
 });
@@ -79,8 +96,10 @@ var coderbitsOpts = {
   customRoute: customRoute
 };
 
+// init localize
 var coderbits = new localize(coderbitsOpts);
 
+// mount paths
 coderbits.mount(app);
 
 server.listen(app.get('port'), function () {
