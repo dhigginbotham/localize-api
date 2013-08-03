@@ -55,8 +55,6 @@ var opts = {
 
 var coderbits = new localize(opts);
 
-console.log(coderbits);
-
 // when mounting this route you will need to
 // have access to `app`, otherwise it will have
 // nowhere to mount anything.

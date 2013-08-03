@@ -27,7 +27,7 @@ var DataStore = require('nedb');
 // define test variables
 /////////////////////////
 
-var TEST_HOST = "http://127.0.0.1"
+var TEST_HOST = "http://localhost"
 var TEST_PORT = app.get('port');
 
 var TEST_URL = TEST_HOST + ':' + TEST_PORT;
@@ -40,7 +40,9 @@ var TEST_MIDDLEWARE = function (req, res, next) {
 
 };
 
-var TEST_DATASTORE = new DataStore({filename: path.join(__dirname, 'db', 'testingDb.db')});
+var TEST_DATASTORE = new DataStore({
+  filename: path.join(__dirname, 'db', 'testingDb.db')
+});
 
 var TEST_LOCALIZE_OPTS = {
   path: 'github',
@@ -54,6 +56,9 @@ var TEST_LOCALIZE_OPTS = {
   ds: TEST_DATASTORE,
   stale: '2m'
 };
+
+// eol test variables
+/////////////////////////
 
 // init a new localize instance
 var github = new localize(TEST_LOCALIZE_OPTS);
@@ -96,24 +101,52 @@ describe('test some github api routes and verify we get data', function () {
   it('should give us a body full of json', function (done) {
 
     request.get(BASE_TEST_PATH + '/users/dhigginbotham', function (err, resp, body) {
-      
+
+      // do some basic tests so we know immediately      
       expect(err).to.be(null);
-      
       expect(body).not.to.be(undefined);
 
+      // parse our json body
       var json = JSON.parse(body);
-
-      expect(json.login).to.equal('dhigginbotham');
-
-      expect(json.id).to.equal(1228507);
-
-      expect(json.path).to.equal('/github/users/dhigginbotham');
       
+      // verify we have caching values
       expect(json.hasOwnProperty('_id')).to.be(true);
+      expect(json.hasOwnProperty('stale')).to.be(true);
+      expect(json.path).to.equal('/github/users/dhigginbotham');
+
+      // verify our api response is valid
+      expect(json.login).to.equal('dhigginbotham');
+      expect(json.id).to.equal(1228507);
 
       done();
 
     });
+
+  });
+
+});
+
+describe('test followers api path on github', function () {
+
+  it('should give us a json response full of data', function (done) {
+
+    request.get(BASE_TEST_PATH + '/users/dhigginbotham/followers', function (err, resp, body) {
+
+      // do some basic tests so we know immediately      
+      expect(err).to.be(null);
+      expect(body).not.to.be(undefined);
+
+      // parse our json body
+      var json = JSON.parse(body);
+      
+      // verify we have caching values
+      expect(json.hasOwnProperty('_id')).to.be(true);
+      expect(json.hasOwnProperty('stale')).to.be(true);
+      expect(json.path).to.equal('/github/users/dhigginbotham/followers');
+
+      done();
+
+    });    
 
   });
 
