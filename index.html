@@ -1,34 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <title>LOCALIZE by dhigginbotham</title>
 
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <title>LOCALIZE by dhigginbotham</title>
   </head>
-
   <body>
-    <header>
-      <div class="inner">
-        <h1>LOCALIZE</h1>
-        <h2>&quot;localize&quot; external API's and cache them for awhile</h2>
-        <a href="https://github.com/dhigginbotham/localize-api" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">LOCALIZE</h1>
+        <p class="header">&quot;localize&quot; external API's and cache them for awhile</p>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h2>
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/dhigginbotham/localize-api/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/dhigginbotham/localize-api/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/dhigginbotham/localize-api">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/dhigginbotham">dhigginbotham</a></p>
+
+
+      </header>
+      <section>
+        <h2>
 <a name="localize-api" class="anchor" href="#localize-api"><span class="octicon octicon-link"></span></a>localize-api</h2>
 
 <p>I needed a way to have more control over external API's as well as keep the REST API functionality. This module allows you to localize external API's along with a simple cache layer/garbarge collection utilizing <a href="https://github.com/louischatriot/nedb"><code>nedb</code></a>, I plan to build in <a href="https://github.com/mongodb/node-mongodb-native"><code>mongodb</code></a> as well. </p>
@@ -47,7 +49,7 @@
 <li>100% coffeescript, hate it or love it</li>
 <li>negates the whole clientside <code>cors</code> issue for some people by using request, and localizes to a RESTful route</li>
 <li>
-<p>If you're using cache it's going to help avoid making a lot of chatty calls to an API, especially if you're doing a lot of paging eg:</p>
+<p>If you're using cache it's going to help avoid making a lot of chatty calls to an API, especially if you're pulling large datasets eg:</p>
 
 <pre><code>GET /github/users/dhigginbotham/following?per_page=300 200 605ms
 GET /github/users/dhigginbotham/following?per_page=300 304 24ms
@@ -59,14 +61,38 @@ GET /github/users/dhigginbotham/following?per_page=300 304 24ms
 <div class="highlight"><pre><span class="n">npm</span> <span class="n">install</span> <span class="n">localize</span><span class="p">-</span><span class="n">api</span> <span class="p">--</span><span class="n">save</span>
 </pre></div>
 
-<p>You'll also need CoffeeScript, it's easy though: <code>npm install coffeescript -g</code></p>
+<h2>
+<a name="simple-example" class="anchor" href="#simple-example"><span class="octicon octicon-link"></span></a>Simple Example</h2>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'http'</span><span class="p">).</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+
+<span class="c1">// include localize-api module</span>
+<span class="kd">var</span> <span class="nx">localize</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'localize-api'</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'port'</span><span class="p">,</span> <span class="mi">1337</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">bodyParser</span><span class="p">());</span>
+
+<span class="c1">// init localize</span>
+<span class="kd">var</span> <span class="nx">github</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">localize</span><span class="p">();</span>
+
+<span class="c1">// mount paths</span>
+<span class="nx">github</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'port'</span><span class="p">),</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'listening on port '</span> <span class="o">+</span> <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'port'</span><span class="p">));</span>
+<span class="p">});</span>
+
+<span class="c1">// GET http://localhost:1337/github/users/dhigginbotham</span>
+</pre></div>
 
 <h2>
-<a name="full-example-w-express-and-options" class="anchor" href="#full-example-w-express-and-options"><span class="octicon octicon-link"></span></a>Full Example w/ Express, and options</h2>
+<a name="full-example" class="anchor" href="#full-example"><span class="octicon octicon-link"></span></a>Full Example</h2>
 
 <p>This example depends on having <a href="https://github.com/visionmedia/express"><code>express.js</code></a> and <a href="https://github.com/louischatriot/nedb"><code>nedb</code></a> available:</p>
 
-<p><code>npm install express nedb --save</code></p>
+<p><code>npm install nedb --save</code></p>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
@@ -81,12 +107,6 @@ GET /github/users/dhigginbotham/following?per_page=300 304 24ms
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">bodyParser</span><span class="p">());</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">methodOverride</span><span class="p">());</span>
 
-<span class="c1">// simple example</span>
-<span class="kd">var</span> <span class="nx">github</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">localize</span><span class="p">();</span>
-
-<span class="nx">github</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
-
-<span class="c1">// full example</span>
 <span class="kd">var</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataStore</span><span class="p">({</span>
   <span class="nx">filename</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">'db'</span><span class="p">,</span> <span class="s1">'fileStorage.db'</span><span class="p">);</span>
 <span class="p">});</span>
@@ -116,8 +136,10 @@ GET /github/users/dhigginbotham/following?per_page=300 304 24ms
   <span class="nx">customRoute</span><span class="o">:</span> <span class="nx">customRoute</span>
 <span class="p">};</span>
 
+<span class="c1">// init localize</span>
 <span class="kd">var</span> <span class="nx">coderbits</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">localize</span><span class="p">(</span><span class="nx">coderbitsOpts</span><span class="p">);</span>
 
+<span class="c1">// mount paths</span>
 <span class="nx">coderbits</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
 
 <span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'port'</span><span class="p">),</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -217,25 +239,12 @@ GET /github/users/dhigginbotham/following?per_page=300 304 24ms
 <span class="n">OUT</span> <span class="n">OF</span> <span class="n">OR</span> <span class="n">IN</span> <span class="n">CONNECTION</span> <span class="n">WITH</span> <span class="n">THE</span> <span class="n">SOFTWARE</span> <span class="n">OR</span> <span class="n">THE</span> <span class="n">USE</span> <span class="n">OR</span> <span class="n">OTHER</span> <span class="n">DEALINGS</span> <span class="n">IN</span>
 <span class="n">THE</span> <span class="n">SOFTWARE</span><span class="p">.</span>
 </pre></div>
-        </section>
-
-        <aside id="sidebar">
-          <a href="https://github.com/dhigginbotham/localize-api/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/dhigginbotham/localize-api/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/dhigginbotham/localize-api"></a> is maintained by <a href="https://github.com/dhigginbotham">dhigginbotham</a>.</p>
-
-          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
     </div>
-
-  
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
   </body>
 </html>
