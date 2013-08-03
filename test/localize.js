@@ -15,7 +15,7 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 
-app.set('port', process.env.port || 1338);
+app.set('port', process.env.port || 1339);
 app.use(express.bodyParser());
 
 // include localize module
@@ -43,7 +43,7 @@ var TEST_MIDDLEWARE = function (req, res, next) {
 var TEST_DATASTORE = new DataStore({filename: path.join(__dirname, 'db', 'testingDb.db')});
 
 var TEST_LOCALIZE_OPTS = {
-  path: 'test-github',
+  path: 'github',
   version: false,
   uri: 'https://api.github.com',
   methods: ['get'],
@@ -52,23 +52,28 @@ var TEST_LOCALIZE_OPTS = {
   locals: true,
   cache: true,
   ds: TEST_DATASTORE,
-  stale: '20s'
+  stale: '2m'
 };
 
 // init a new localize instance
 var github = new localize(TEST_LOCALIZE_OPTS);
 
 var BASE_TEST_PATH = TEST_URL + '/' + github.path;
+console.log(BASE_TEST_PATH);
 
 // mount routes to express app
 github.mount(app);
+
+server.listen(app.get('port'), function() {
+  console.log('localize-api test server loaded.');
+});
 
 describe('localize-api test framework initializing', function () {
 
   it('should have a github object full of our options, lets verify', function (done) {
 
     expect(github).not.to.be(null);
-    expect(github.path).to.be("test-github");
+    expect(github.path).to.be("github");
     expect(github.version).to.be(false);
     expect(github.uri).to.be("https://api.github.com");
     expect(github.methods[0]).to.be('get');
@@ -91,14 +96,25 @@ describe('test some github api routes and verify we get data', function () {
   it('should give us a body full of json', function (done) {
 
     request.get(BASE_TEST_PATH + '/users/dhigginbotham', function (err, resp, body) {
+      
       expect(err).to.be(null);
+      
+      expect(body).not.to.be(undefined);
+
+      var json = JSON.parse(body);
+
+      expect(json.login).to.equal('dhigginbotham');
+
+      expect(json.id).to.equal(1228507);
+
+      expect(json.path).to.equal('/github/users/dhigginbotham');
+      
+      expect(json.hasOwnProperty('_id')).to.be(true);
+
       done();
+
     });
 
   });
 
-});
-
-process.on('SIGINT', function () {
-  server.close(0);
 });
