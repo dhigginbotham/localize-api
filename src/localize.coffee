@@ -33,6 +33,25 @@ localize = (opts) ->
   # accepts an array of middleware
   @middleware = []
 
+  ### 
+
+  @todo - add option for custom headers because `req.headers`
+  was not correctly mapping to `github` and giving errors.
+
+  something like this will be coming:
+
+  this.getKnownHeaders = function (req, res, fn) {
+  
+    var headers = _.extend req.headers, this.headers;
+
+  };
+
+  this.headers = {
+    'User-Agent' : 'some-user-agent-idk'
+  };
+
+  ###
+
   # add a custom route handler, item will have
   # access to `req` & `res` @update - this now accepts
   # `false` allowing you to not use a route at all, but

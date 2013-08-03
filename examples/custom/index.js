@@ -5,7 +5,7 @@ var server = require('http').createServer(app);
 
 var path = require('path');
 var DataStore = require('nedb');
-var localize = require('localize-api');
+var localize = require('../../lib');
 
 app.set('port', 1337);
 app.use(express.bodyParser());
