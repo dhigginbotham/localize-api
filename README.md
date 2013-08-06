@@ -118,6 +118,7 @@ Name | Defaults | Info
 `customKey` | `path` | defaults to your path string, for instance if your path was 'github', `req.github` would be set 
 `customRoute` | `null` | allows you to pass a custom route through as your endpoint, helpful if you want to use the output to template a file
 `ds` | `DataStore` | you'll get one of these from [`nedb`](https://github.com/louischatriot/nedb)
+`headers` | `Object` | inherits from req.headers if this isn't set, however there's a caveat, because the example, github requires a custom user-agent set, so we do that in here to make things happy. However it's recommended that you set your own
 `locals` | `false` | if `true` it will set `res.locals[customKey]` as well as `req[customKey]`
 `middleware` | `[]` | allows you to add custom middleware to your api, good for authentication/ensureLogin etc
 `path` | `github` | defaults to `github` which is the default api to get this going quickly

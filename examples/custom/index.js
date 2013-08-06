@@ -48,7 +48,7 @@ var opts = {
   customKey: '__coderbits',
   stale: '5m',
   headers: {
-    'User-Agent' : 'Testing the surf'
+    'User-Agent' : 'test localize-api surfing'
   },
   cache: true,
   ds: ds,
