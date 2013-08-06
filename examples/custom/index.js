@@ -11,10 +11,10 @@ app.set('port', 1337);
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 
-// simple example
-var github = new localize();
+// // simple example
+// var github = new localize();
 
-github.mount(app);
+// github.mount(app);
 
 // full example
 var ds = new DataStore({
@@ -47,6 +47,9 @@ var opts = {
   uri: 'https://coderbits.com',
   customKey: '__coderbits',
   stale: '5m',
+  headers: {
+    'User-Agent' : 'Testing the surf'
+  },
   cache: true,
   ds: ds,
   middleware: [middleOne, middleTwo],
