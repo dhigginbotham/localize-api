@@ -43,14 +43,14 @@ var middleTwo = function (req, res, next) {
 
 // define specific options for your `localizer`
 var opts = {
-  // path: 'coderbits',
-  // uri: 'https://coderbits.com',
+  path: 'coderbits',
+  uri: 'https://coderbits.com',
   customKey: '__coderbits',
   stale: '5m',
   headers: {
     'User-Agent' : 'Testing the surf'
   },
-  cache: false,
+  cache: true,
   ds: ds,
   middleware: [middleOne, middleTwo],
   customRoute: customRoute
