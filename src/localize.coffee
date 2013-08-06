@@ -91,7 +91,7 @@ localize = (opts) ->
   if opts? then _.extend @, opts
 
   # give access to internal headers so this stuff works still
-  if @path == "github" then @headers = {'User-Agent' : 'Github surfing'}
+  if @uri == "https://api.github.com" then @headers = {'user-agent' : 'node-localize-api-surfing'}
 
   # sanitize our @path variable and make sure that we're not going to break anything
   # note we're going to allow `/` inbetween our first and last index, this just keeps
