@@ -11,10 +11,10 @@ app.set('port', 1337);
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 
-// simple example
-var github = new localize();
+// // simple example
+// var github = new localize();
 
-github.mount(app);
+// github.mount(app);
 
 // full example
 var ds = new DataStore({
@@ -43,11 +43,14 @@ var middleTwo = function (req, res, next) {
 
 // define specific options for your `localizer`
 var opts = {
-  path: 'coderbits',
-  uri: 'https://coderbits.com',
+  // path: 'coderbits',
+  // uri: 'https://coderbits.com',
   customKey: '__coderbits',
   stale: '5m',
-  cache: true,
+  headers: {
+    'User-Agent' : 'Testing the surf'
+  },
+  cache: false,
   ds: ds,
   middleware: [middleOne, middleTwo],
   customRoute: customRoute

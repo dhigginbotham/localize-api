@@ -33,6 +33,9 @@ localize = (opts) ->
   # accepts an array of middleware
   @middleware = []
 
+  # headers to pass through by default
+  @headers = {}
+
   ### 
 
   @todo - add option for custom headers because `req.headers`
@@ -111,6 +114,8 @@ localize = (opts) ->
       # should work for our uses
       new request req, self, (err, resp) ->
 
+        return if err? then next err, null
+
         # set `req[self.customKey]` to our body
         req[self.customKey] = resp
         
@@ -139,16 +144,12 @@ localize::mount = (app) ->
 
   # verify we have custom middleware, otherwise skip this loop 
   # all together
-  if self.middleware.length > 0
-
-    # loop through our middleware and add it accordingly
-    for middlewares in self.middleware
-      app.all "/#{self.path}*", middlewares
+  if self.middleware.length > 0 then app.all "/#{self.path}*", self.middleware
 
   # check for a custom route, otherwise have fun!
   if self.customRoute == null
     app.all "/#{self.path}*", self.request, self.router
-  else if self.customRoute == false then app.all "/#{self.path}*", self.request
+  else if self.customRoute == false then app.all "/#{self.path}*", self.request, self.router
   else app.all "/#{self.path}*", self.request, self.customRoute
 
   @

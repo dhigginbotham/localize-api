@@ -52,6 +52,9 @@ var TEST_LOCALIZE_OPTS = {
   middleware: [TEST_MIDDLEWARE],
   customKey: 'github',
   locals: true,
+  headers: {
+    'User-Agent' : 'Testing the surf'
+  },  
   cache: true,
   ds: TEST_DATASTORE,
   stale: '2m'

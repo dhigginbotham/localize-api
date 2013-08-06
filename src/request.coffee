@@ -37,10 +37,11 @@ requestsHandler = (req, opts, fn) ->
         options = 
           uri: url
           method: req.method
-          headers: "User-Agent": "#{self.path}-surfing"
+          headers: if Object.keys(self.headers).length > 0 then self.headers else req.headers
 
         request options, (err, resp, body) ->
           return if err? then fn err, null
+          return if resp.statusCode > 305 then fn JSON.stringify({error: "Error occured, unhandled status code: #{resp.statusCode}"}), null
 
           if body? 
             
@@ -70,10 +71,11 @@ requestsHandler = (req, opts, fn) ->
     options = 
       uri: url
       method: req.method
-      headers: "User-Agent": "#{self.path}-surfing"
+      headers: if Object.keys(self.headers).length > 0 then self.headers else req.headers
 
     request options, (err, resp, body) ->
       return if err? then fn err, null
+      return if resp.statusCode > 305 then fn JSON.stringify({error: "Error occured, unhandled status code: #{resp.statusCode}"}), null
       return if body? then fn null, body
 
 module.exports = requestsHandler
