@@ -50,6 +50,9 @@ var opts = {
   headers: {
     'User-Agent' : 'test localize-api surfing'
   },
+  bodyOverride: {
+    cheese: 'whiz'
+  },
   cache: true,
   ds: ds,
   middleware: [middleOne, middleTwo],

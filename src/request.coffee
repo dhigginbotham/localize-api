@@ -13,7 +13,7 @@ requestsHandler = (req, opts, fn) ->
   self = @
 
   # sanitize our url so we can pass anything through
-  clean = req.url.replace "/#{self.path}/", ""
+  clean = req.path.replace "/#{self.path}/", ""
 
   # define our route, we want this...
   url = "#{self.uri}/#{clean}"
@@ -37,13 +37,16 @@ requestsHandler = (req, opts, fn) ->
         options = 
           uri: url
           method: req.method
+          qs: if req.query? then req.query else {}
+          form: if self.bodyOverride? then _.extend {}, self.bodyOverride, req.body else req.body
           headers: if Object.keys(self.headers).length > 0 then self.headers else req.headers
+          strictSSL: self.strictSSL
 
         request options, (err, resp, body) ->
           return if err? then fn err, null
-          return if resp.statusCode > 305 then fn JSON.stringify({error: "Error occured, unhandled status code: #{resp.statusCode}"}), null
+          return if resp.statusCode > 305 then fn JSON.stringify(_.extend({}, body, {error: "Error occured, unhandled status code: #{resp.statusCode}"})), null
 
-          if body? 
+          if body?
             
             # build our cache object
             cache = JSON.parse body
@@ -68,14 +71,19 @@ requestsHandler = (req, opts, fn) ->
             return fn "something bad happened, id look into this...", null
   else
 
+    # build `request` opts object, should probably make
+    # a bit of this accessible on the front-end
     options = 
       uri: url
       method: req.method
+      qs: if req.query? then req.query else {}
+      form: if self.bodyOverride? then _.extend {}, self.bodyOverride, req.body else req.body
       headers: if Object.keys(self.headers).length > 0 then self.headers else req.headers
+      strictSSL: self.strictSSL
 
     request options, (err, resp, body) ->
       return if err? then fn err, null
-      return if resp.statusCode > 305 then fn JSON.stringify({error: "Error occured, unhandled status code: #{resp.statusCode}"}), null
+      return if resp.statusCode > 305 then fn JSON.stringify(_.extend({}, body, {error: "Error occured, unhandled status code: #{resp.statusCode}"})), null
       return if body? then fn null, body
 
 module.exports = requestsHandler
