@@ -1,6 +1,6 @@
 {
   "name": "localize-api",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "helpful resource for getting external api's and making them local",
   "main": "lib/index.js",
   "keywords": [

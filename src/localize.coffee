@@ -36,6 +36,8 @@ localize = (opts) ->
   # headers to pass through by default
   @headers = {}
 
+  @bodyOverride = null
+
   ### 
 
   @todo - add option for custom headers because `req.headers`
@@ -67,6 +69,9 @@ localize = (opts) ->
 
   # toggle to use `req.` or `res.locals.` will default
   @locals = false
+
+  # strictSSL to follow unsafe url requests from unsigned https
+  @strictSSL = false
 
   ### settings to store cache items ###
 
