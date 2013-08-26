@@ -38,7 +38,7 @@ requestsHandler = (req, opts, fn) ->
           uri: url
           method: req.method
           qs: if req.query? then req.query else {}
-          form: if self.bodyOverride? then self.bodyOverride else {}
+          form: if self.bodyOverride? then _.extend {}, self.bodyOverride, req.body else req.body
           headers: if Object.keys(self.headers).length > 0 then self.headers else req.headers
 
         request options, (err, resp, body) ->
