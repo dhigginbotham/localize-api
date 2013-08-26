@@ -13,7 +13,7 @@ requestsHandler = (req, opts, fn) ->
   self = @
 
   # sanitize our url so we can pass anything through
-  clean = req.url.replace "/#{self.path}/", ""
+  clean = req.path.replace "/#{self.path}/", ""
 
   # define our route, we want this...
   url = "#{self.uri}/#{clean}"
@@ -37,6 +37,8 @@ requestsHandler = (req, opts, fn) ->
         options = 
           uri: url
           method: req.method
+          qs: if req.query? then req.query else {}
+          form: if self.bodyOverride? then self.bodyOverride else {}
           headers: if Object.keys(self.headers).length > 0 then self.headers else req.headers
 
         request options, (err, resp, body) ->

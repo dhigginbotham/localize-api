@@ -36,6 +36,8 @@ localize = (opts) ->
   # headers to pass through by default
   @headers = {}
 
+  @bodyOverride = null
+
   ### 
 
   @todo - add option for custom headers because `req.headers`
