@@ -79,9 +79,7 @@ requestsHandler = (req, opts, fn) ->
       qs: if req.query? then req.query else {}
       form: if self.bodyOverride? then _.extend {}, self.bodyOverride, req.body else req.body
       headers: if Object.keys(self.headers).length > 0 then self.headers else req.headers
-      strictSSL: false
-
-    console.log options
+      strictSSL: self.strictSSL
 
     request options, (err, resp, body) ->
       return if err? then fn err, null
