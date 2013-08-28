@@ -35,6 +35,7 @@ localize = (opts) ->
   # like to set into your request, like an api key, access token, id, etc..
   @bodyOverride = {}
 
+
   @methodOverride = null;
 
   ### 
@@ -95,7 +96,7 @@ localize = (opts) ->
   if opts? then _.extend @, opts
 
   # give access to internal headers so this stuff works still
-  if @uri == "https://api.github.com" then @headers = {'user-agent' : 'node-localize-api-surfing'}
+  if @uri == "https://api.github.com/" then @headers = {'user-agent' : 'node-localize-api-surfing'}
 
   # sanitize our @path variable and make sure that we're not going to break anything
   # note we're going to allow `/` inbetween our first and last index, this just keeps
@@ -108,6 +109,12 @@ localize = (opts) ->
   # maintain our scope... es mui importante
   self = @
 
+  @preware = (req, res, next) ->
+
+    req.body = if self.bodyOverride? then _.extend {}, self.bodyOverride, req.body 
+
+    next()
+  
   @request = (req, res, next) ->
 
     # lowercase our `req.method` so we don't have to
@@ -155,9 +162,9 @@ localize::mount = (app, fn) ->
 
   # check for a custom route, otherwise have fun!
   if self.customRoute == null
-    app.all "/#{self.path}*", self.request, self.router
+    app.all "/#{self.path}*", self.preware, self.request, self.router
   else if self.customRoute == false then app.all "/#{self.path}*", self.request, self.router
-  else app.all "/#{self.path}*", self.request, self.customRoute
+  else app.all "/#{self.path}*", self.preware, self.request, self.customRoute
 
   if typeof fn == "undefined"
     return @
