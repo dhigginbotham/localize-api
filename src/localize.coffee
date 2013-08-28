@@ -7,36 +7,35 @@ request = require "./request"
 # localize
 localize = (opts) ->
 
-  # additional prefix/path identifier so
-  # you can have multiple routes in place
+  # additional prefix/path identifier so you can have multiple routes in place
   @path = "github"
 
-  # we're not going to use a version by
-  # default, too prone to fragmentation
-  # can be toggled by switching this to
-  # a string.. cheers
+  # we're not going to use a version by default, too prone to fragmentation
+  # can be toggled by switching this to a string.. cheers
   @version = false
 
-  # set github to our default localize
-  # with this set, we can map our
-  # external requests, this allows for
-  # front-end developers to not worry about
+  # set github to our default localize with this set, we can map our
+  # external requests, this allows for front-end developers to not worry about
   # CORS / configuration
-  @uri = "https://api.github.com"
+  @uri = "https://api.github.com/"
 
-  # define an array of accepted methods
-  # some api's should only have access
+  # define an array of accepted methods some api's should only have access
   # to certain things, clearly.
   @methods = ['post', 'put', 'delete', 'get']
 
-  # add custom middleware to your route,
-  # accepts an array of middleware
+  # add custom middleware to your route, accepts an array of middleware
   @middleware = []
 
   # headers to pass through by default
-  @headers = {}
+  @headers = {
+    'User-Agent' : 'some-user-agent-idk'
+  };
 
-  @bodyOverride = null
+  # bodyOverride is a nice feature, say you have some persistant data you'd
+  # like to set into your request, like an api key, access token, id, etc..
+  @bodyOverride = {}
+
+  @methodOverride = null;
 
   ### 
 
@@ -145,7 +144,7 @@ localize = (opts) ->
     
   @
 
-localize::mount = (app) ->
+localize::mount = (app, fn) ->
   # mount our routes to express, this will allow for a sync
   # request, and fire only once.
   self = @
@@ -160,6 +159,9 @@ localize::mount = (app) ->
   else if self.customRoute == false then app.all "/#{self.path}*", self.request, self.router
   else app.all "/#{self.path}*", self.request, self.customRoute
 
-  @
+  if typeof fn == "undefined"
+    return @
+  else
+    return fn @
 
 module.exports = localize
