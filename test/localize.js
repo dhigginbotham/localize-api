@@ -47,7 +47,7 @@ var TEST_DATASTORE = new DataStore({
 var TEST_LOCALIZE_OPTS = {
   path: 'github',
   version: false,
-  uri: 'https://api.github.com',
+  uri: 'https://api.github.com/',
   methods: ['get'],
   middleware: [TEST_MIDDLEWARE],
   customKey: 'github',
@@ -83,7 +83,7 @@ describe('localize-api test framework initializing', function () {
     expect(github).not.to.be(null);
     expect(github.path).to.be("github");
     expect(github.version).to.be(false);
-    expect(github.uri).to.be("https://api.github.com");
+    expect(github.uri).to.be("https://api.github.com/");
     expect(github.methods[0]).to.be('get');
     expect(github.methods.length).to.be(1);
     expect(github.middleware).not.to.be(null);

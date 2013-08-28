@@ -17,7 +17,7 @@ localize = (opts) ->
   # set github to our default localize with this set, we can map our
   # external requests, this allows for front-end developers to not worry about
   # CORS / configuration
-  @uri = "https://api.github.com"
+  @uri = "https://api.github.com/"
 
   # define an array of accepted methods some api's should only have access
   # to certain things, clearly.
@@ -27,11 +27,15 @@ localize = (opts) ->
   @middleware = []
 
   # headers to pass through by default
-  @headers = {}
+  @headers = {
+    'User-Agent' : 'some-user-agent-idk'
+  };
 
   # bodyOverride is a nice feature, say you have some persistant data you'd
   # like to set into your request, like an api key, access token, id, etc..
-  @bodyOverride = null
+  @bodyOverride = {}
+
+  @methodOverride = null;
 
   ### 
 

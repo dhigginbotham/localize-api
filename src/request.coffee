@@ -16,7 +16,17 @@ requestsHandler = (req, opts, fn) ->
   clean = req.path.replace "/#{self.path}/", ""
 
   # define our route, we want this...
-  url = "#{self.uri}/#{clean}"
+  url = self.uri + clean;
+
+  # build `request` opts object, should probably make
+  # a bit of this accessible on the front-end
+  options = 
+    url: url
+    method: if self.methodOverride? then self.methodOverride else req.method
+    qs: if req.query? then req.query else {}
+    form: if self.bodyOverride? then _.extend(req.body, self.bodyOverride) else req.body
+    headers: if Object.keys(self.headers).length > 0 then self.headers else {}
+    strictSSL: self.strictSSL
 
   # lets check for some cache stuff, we don't want to do this until we absolutely have to
   if (@cache == true) and @ds?
@@ -31,16 +41,6 @@ requestsHandler = (req, opts, fn) ->
       return if found? then fn null, found
 
       if not found?
-
-        # build `request` opts object, should probably make
-        # a bit of this accessible on the front-end
-        options = 
-          uri: url
-          method: req.method
-          qs: if req.query? then req.query else {}
-          form: if self.bodyOverride? then _.extend {}, self.bodyOverride, req.body else req.body
-          headers: if Object.keys(self.headers).length > 0 then self.headers else req.headers
-          strictSSL: self.strictSSL
 
         request options, (err, resp, body) ->
           return if err? then fn err, null
@@ -70,16 +70,6 @@ requestsHandler = (req, opts, fn) ->
           else
             return fn "something bad happened, id look into this...", null
   else
-
-    # build `request` opts object, should probably make
-    # a bit of this accessible on the front-end
-    options = 
-      uri: url
-      method: req.method
-      qs: if req.query? then req.query else {}
-      form: if self.bodyOverride? then _.extend {}, self.bodyOverride, req.body else req.body
-      headers: if Object.keys(self.headers).length > 0 then self.headers else req.headers
-      strictSSL: self.strictSSL
 
     request options, (err, resp, body) ->
       return if err? then fn err, null
