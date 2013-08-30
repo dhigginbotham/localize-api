@@ -138,6 +138,7 @@ Name | Defaults | Info
 `ds` | `DataStore` | you'll get one of these from [`nedb`](https://github.com/louischatriot/nedb)
 `headers` | `Object` | inherits from req.headers if this isn't set, however there's a caveat, because the example, github requires a custom user-agent set, so we do that in here to make things happy. However it's recommended that you set your own
 `bodyOverride` | `Object` | Good for storing globals like `AccessTokens`, `AppId`, etc.
+`preware` | `[Array]` | This happens before the request is fired, and has access to req/res objects
 `methodOverride` | `Object` | Quick and easy methodOverride.
 `locals` | `false` | if `true` it will set `res.locals[customKey]` as well as `req[customKey]`
 `middleware` | `[]` | allows you to add custom middleware to your api, good for authentication/ensureLogin etc
