@@ -42,8 +42,7 @@ var napip = function (options) {
 
     _.extend(this, options);
 
-  }
-
+  };
 
   var self = this;
 
