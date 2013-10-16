@@ -5,24 +5,24 @@ var helpers = require('../../src/alpha/helpers');
 
 describe('test helpers.js methods to ensure they\'re working the way we rely on them to', function () {
 
-  var hasTrailingSlash = 'https://api.github.com/';
-  var noTrailingSlash = 'https://api.github.com';
+  var hasTrailingSlashUri = 'https://api.github.com/';
+  var noTrailingSlashUri = 'https://api.github.com';
 
-  var beginingSlashPath = '/path/of/endpoint/n';
-  var TrailingSlashPath = '/path/of/endpoint/n/';
+  var trailingSlashPath = '/path/of/endpoint/n';
+  var noTrailingSlashPath = '/path/of/endpoint/n/';
   
-  var trix = '//';
-  var sanitizedTrix = '/';
+  var trix = '/*/';
+  var sanitizedTrix = '/*';
 
   describe('non-blocking: test removeTrailingSlash', function () {
 
-    helpers.removeTrailingSlash(hasTrailingSlash, function (helperResult) {
+    helpers.removeTrailingSlash(hasTrailingSlashUri, function (helperResult) {
 
-      it('goes from ' + hasTrailingSlash + ' to ' + noTrailingSlash, function (done) {
+      it('goes from ' + hasTrailingSlashUri + ' to ' + noTrailingSlashUri, function (done) {
 
         expect(helperResult).not.to.be(null);
 
-        expect(helperResult).to.equal(noTrailingSlash);
+        expect(helperResult).to.equal(noTrailingSlashUri);
         
         return done();
 
@@ -30,13 +30,13 @@ describe('test helpers.js methods to ensure they\'re working the way we rely on 
 
     });
 
-    helpers.removeTrailingSlash(TrailingSlashPath, function (helperResult) {
+    helpers.removeTrailingSlash(noTrailingSlashPath, function (helperResult) {
 
-      it('goes from ' + TrailingSlashPath + ' to ' + beginingSlashPath, function (done) {
+      it('goes from ' + noTrailingSlashPath + ' to ' + trailingSlashPath, function (done) {
 
         expect(helperResult).not.to.be(null);
 
-        expect(helperResult).to.equal(beginingSlashPath);
+        expect(helperResult).to.equal(trailingSlashPath);
         
         return done();
 
@@ -62,23 +62,23 @@ describe('test helpers.js methods to ensure they\'re working the way we rely on 
 
   describe('blocking: test removeTrailingSlash', function () {
 
-    it('goes from ' + hasTrailingSlash + ' to ' + noTrailingSlash, function (done) {
+    it('goes from ' + hasTrailingSlashUri + ' to ' + noTrailingSlashUri, function (done) {
       
-      var helperResult = helpers.removeTrailingSlash(hasTrailingSlash);
+      var helperResult = helpers.removeTrailingSlash(hasTrailingSlashUri);
 
       expect(helperResult).not.to.be(null);
-      expect(helperResult).to.equal(noTrailingSlash);
+      expect(helperResult).to.equal(noTrailingSlashUri);
 
       return done();
 
     });
 
-    it('goes from ' + TrailingSlashPath + ' to ' + beginingSlashPath, function (done) {
+    it('goes from ' + noTrailingSlashPath + ' to ' + trailingSlashPath, function (done) {
       
-      var helperResult = helpers.removeTrailingSlash(TrailingSlashPath);
+      var helperResult = helpers.removeTrailingSlash(noTrailingSlashPath);
 
       expect(helperResult).not.to.be(null);
-      expect(helperResult).to.equal(beginingSlashPath);
+      expect(helperResult).to.equal(trailingSlashPath);
 
       return done();
 
